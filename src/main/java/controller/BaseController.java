@@ -19,8 +19,6 @@ public class BaseController {
      */
     public CartItem checkMediaInCart(Media media){
         return SessionInformation.cartInstance.checkMediaInCart(media);
-
-        //vi phạm SRP
     }
 
     /**

@@ -22,9 +22,6 @@ import java.util.regex.Pattern;
  * @author nguyenlm
  */
 public class PlaceOrderController extends BaseController {
-    //mô tả:  lớp này thực hiện quá nhiều method trong cùng 1 class, đó là validate
-    // ảnh hường: giả sử có một lớp khác cũng có validate trương tự thì dẫn đến duplicate code,
-    // nên tách ra validate thành 1 class
 
     /**
      * Just for logging purpose

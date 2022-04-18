@@ -49,9 +49,7 @@ public class PaymentController extends BaseController {
 		if (strs.length != 2) {
 			throw new InvalidCardException();
 		}
-		//Lớp này thực hiện quá nhiều method trong cùng 1 class
-		// ko làm ẽo mục đích chính của class nên tách thành class mới vì nhiều class khác cx cần sử dụng hoặc
-		// thêm một phương thức validatetTimeOder ở trong class vaidate
+
 		String expirationDate = null;
 		int month = -1;
 		int year = -1;

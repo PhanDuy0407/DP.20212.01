@@ -20,8 +20,6 @@ import java.util.Objects;
  */
 public class AuthenticationController extends BaseController {
 
-//lớp sử dụng xác thực nhưng lại chưa các phương thức validate
-// không làm đúng nhiệm vụ của class, cần tách các phường thức dư thừa ra ngoài
     public boolean isAnonymousSession() {
         try {
             getMainUser();

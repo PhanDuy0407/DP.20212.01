@@ -23,7 +23,3 @@ public class PaymentTransaction {
 		return errorCode;
 	}
 }
-// lớp này có contrucsion PaymentTransasction nhưng lại truyền vào các giá trị cứng
-// nên chỉ thanh toán được với 1 loại card
-
-// ảnh hường: nếu tương lai phát sinh thêm các loại thanh toán mới thì sẽ dẫn đến vieecjphari modify lại code
