@@ -40,6 +40,7 @@ public class ApplicationProgrammingInterface {
 	}
 
 	public static String post(String url, String data) throws IOException {
+		//coincidental cohesion vi trong phuong thuc vua tao ket noi vua thao tac voi du lieu
 		allowMethods("PATCH");
 		HttpURLConnection conn = setupConnection(url);
 		conn.setRequestMethod("PATCH");

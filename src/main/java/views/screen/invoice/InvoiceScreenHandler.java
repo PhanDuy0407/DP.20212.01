@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 public class InvoiceScreenHandler extends BaseScreenHandler {
 
+//Vi pham coincidental cohesion: Cac method trong class nay ko lien quan gi den nhau nhung lai glam cho class nay qua cong kenh va phuc tap
 	private static Logger LOGGER = Utils.getLogger(InvoiceScreenHandler.class.getName());
 
 	@FXML

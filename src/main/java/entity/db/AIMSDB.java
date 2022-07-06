@@ -27,6 +27,8 @@ public class AIMSDB {
     }
 
 
+//Vi pham nguyen tac temproral cohesion: ham main se duoc goi truoc xong roi ham GetConnection se duoc goi sau do nhung
+//chung ko lien quan gi den nhau vi chi co 1 ham Main duy nhat duoc goi khi chuong trinh thuc thi tai file App.java
     public static void main(String[] args) {
         AIMSDB.getConnection();
     }

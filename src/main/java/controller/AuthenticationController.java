@@ -20,6 +20,9 @@ import java.util.Objects;
  */
 public class AuthenticationController extends BaseController {
 
+//Vi pham nguyen tac temproral cohesion: Viec xac thuc nguoi dung la lien quan den nhau ve mat thoi gian, nhung nen tach
+//thanh cac class khac nhau vi xac thuc qua nhieu thong tin trong 1 class se gay code kho doc va chinh sua
+//ngoai ra nhung cap xac thuc ma ko lien quan gi den nhau thi nen cho sang cac class khac
     public boolean isAnonymousSession() {
         try {
             getMainUser();

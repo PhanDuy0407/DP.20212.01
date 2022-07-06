@@ -23,6 +23,8 @@ import java.util.regex.Pattern;
  */
 public class PlaceOrderController extends BaseController {
 
+//Vi pham nguyen tac temproral cohesion: validatePhoneNumber, validateName, validateAddress nen duoc implement tu 1 interface
+//Validate duy nhat
     /**
      * Just for logging purpose
      */

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class PaymentScreenHandler extends BaseScreenHandler {
 
 	private static final Logger LOGGER = Utils.getLogger(PaymentScreenHandler.class.getName());
+//Vi pham coincidental cohesion: Cac method trong class nay ko lien quan gi den nhau nhung lai glam cho class nay qua cong kenh va phuc tap
 
 	@FXML
 	private Button btnConfirmPayment;
