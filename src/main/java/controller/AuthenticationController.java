@@ -18,6 +18,12 @@ import java.util.Objects;
 /**
  * @author
  */
+
+/*
+    Temporal Cohesion: 3 is checking, or using when login, md5 is not related in Authentication
+    SRP: Because getMainUser not realated other method 
+    
+*/
 public class AuthenticationController extends BaseController {
 
 //Vi pham nguyen tac temproral cohesion: Viec xac thuc nguoi dung la lien quan den nhau ve mat thoi gian, nhung nen tach

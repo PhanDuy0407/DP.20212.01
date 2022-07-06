@@ -3,6 +3,14 @@ package subsystem.interbank;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
 
+
+/*
+	Duc anh
+	procedural cohesion
+	refund when the user wants to return the item
+	and pay oder when the user wants by the item
+	payorder are made before refunds
+*/
 public class InterbankSubsystemController {
 
 	private static InterbankPayloadConverter interbankPayloadConverter = new InterbankPayloadConverter();

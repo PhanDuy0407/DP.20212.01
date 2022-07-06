@@ -21,6 +21,12 @@ import subsystem.InterbankSubsystem;
  * @author hieud
  *
  */
+
+/*
+	Ducanh
+	Coincidental cohesion
+	method getExpirationDate is incidental to another method 
+*/
 public class PaymentController extends BaseController {
 
 //Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan

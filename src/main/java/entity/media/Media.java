@@ -27,6 +27,7 @@ public class Media {
     protected String imageURL;
     protected boolean rushSupported;
 
+    // Content coupling: Truy cập vào trạng thái của Connect 
     public Media() throws SQLException{
         stm = AIMSDB.getConnection().createStatement();
     }
@@ -45,6 +46,7 @@ public class Media {
         this.imageURL = imageUrl;
     }
 
+    // content coupling, truy cập trực tiếp vào quantity của đối tượng
     public int getQuantity() throws SQLException {
         int updated_quantity = new MediaDAO().getMediaById(id).quantity;
         this.quantity = updated_quantity;

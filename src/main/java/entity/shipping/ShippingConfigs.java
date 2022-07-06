@@ -4,7 +4,7 @@ package entity.shipping;
  * @author
  */
 public class ShippingConfigs {
-
+    // Common Coupling: sử dụng biến static và có thể truy cập public
     public static String[] PROVINCES = {
             "Bắc Giang", 	"Bắc Kạn", 			"Cao Bằng", 	"Hà Giang", 	"Lạng Sơn", 	"Phú Thọ",
             "Quảng Ninh", 	"Thái Nguyên", 		"Tuyên Quang", 	"Yên Bái", 		"Điện Biên", 	"Hòa Bình",

@@ -35,7 +35,6 @@ import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
 import views.screen.popup.PopupScreen;
 
-
 public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
@@ -69,10 +68,13 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     private List homeItems;
     private AuthenticationController authenticationController;
+<<<<<<< HEAD
 
 //Tat ca cac method khac trong class nay ko su dung den method HomeScreenHandler, getNumediaCartLabel,
 //show, redirectLogin,... nen co the tach ra 1 class khac de tranh vi pham logical cohession
 //Vi class nay da co qua nhieu method ko lien quan gi den nhau
+=======
+>>>>>>> 1e523963f636481f016b5896a057194ed97598a5
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {

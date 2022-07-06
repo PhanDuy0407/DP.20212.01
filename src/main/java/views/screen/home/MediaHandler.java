@@ -24,7 +24,6 @@ import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
-
 public class MediaHandler extends FXMLScreenHandler implements Observable {
 
     @FXML
@@ -48,7 +47,6 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
     private List<Observer> observerList;
-
     public MediaHandler(String screenPath, Media media) throws SQLException, IOException{
         super(screenPath);
         this.media = media;
