@@ -2,13 +2,10 @@ package views.screen.home;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
@@ -20,7 +17,6 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,13 +64,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     private List homeItems;
     private AuthenticationController authenticationController;
-<<<<<<< HEAD
 
 //Tat ca cac method khac trong class nay ko su dung den method HomeScreenHandler, getNumediaCartLabel,
 //show, redirectLogin,... nen co the tach ra 1 class khac de tranh vi pham logical cohession
 //Vi class nay da co qua nhieu method ko lien quan gi den nhau
-=======
->>>>>>> 1e523963f636481f016b5896a057194ed97598a5
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {
@@ -93,15 +86,18 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         return this.numMediaInCart;
     }
 
-    public HomeController getBController() {
-        return (HomeController) super.getBController();
+    public HomeController getBaseController() {
+        return (HomeController) super.getBaseController();
     }
 
     protected void setupData(Object dto) throws Exception {
+        //Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+        //tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+        //lai cac phuong thuc setup do
         setBController(new HomeController());
         this.authenticationController = new AuthenticationController();
         try{
-            List medium = getBController().getAllMedia();
+            List medium = getBaseController().getAllMedia();
             this.homeItems = new ArrayList<>();
             for (Object object : medium) {
                 Media media = (Media)object;
@@ -226,7 +222,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             if (requestQuantity > media.getQuantity()) throw new MediaNotAvailableException();
             Cart cart = SessionInformation.cartInstance;
             // if media already in cart then we will increase the quantity by 1 instead of create the new cartMedia
-            CartItem mediaInCart = getBController().checkMediaInCart(media);
+            CartItem mediaInCart = getBaseController().checkMediaInCart(media);
             if (mediaInCart != null) {
                 mediaInCart.setQuantity(mediaInCart.getQuantity() + 1);
             } else {

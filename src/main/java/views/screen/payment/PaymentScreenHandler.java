@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
@@ -14,6 +15,7 @@ import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -29,6 +31,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	private ImageView loadingImage;
 
 	private Invoice invoice;
+
+	@FXML
+	private VBox paymentMethod;
 
 	@FXML
 	private Label pageTitle;
@@ -67,7 +72,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		btnConfirmPayment.setOnMouseClicked(e -> {
 			try {
 				confirmToPayOrder();
-				((PaymentController) getBController()).emptyCart();
+				((PaymentController) getBaseController()).emptyCart();
 			} catch (Exception exp) {
 				System.out.println(exp.getStackTrace());
 			}
@@ -76,10 +81,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 
 	void confirmToPayOrder() throws IOException{
 		String contents = "pay order";
-		PaymentController ctrl = (PaymentController) getBController();
+		PaymentController ctrl = (PaymentController) getBaseController();
 		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardNumber.getText(), holderName.getText(),
 				expirationDate.getText(), securityCode.getText());
 
+		ShowResultScreen(response);
+	}
+
+	private void ShowResultScreen(Map<String, String> response) throws IOException {
 		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, ViewsConfig.RESULT_SCREEN_PATH, response);
 		resultScreen.setPreviousScreen(this);
 		resultScreen.setHomeScreenHandler(homeScreenHandler);

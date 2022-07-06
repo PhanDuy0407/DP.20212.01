@@ -2,13 +2,7 @@
 
 /bin/
 
-<<<<<<< HEAD
-.classpath
-.project
-
-/.settings/
-.idea/
-=======
+/production
  
 # Compiled class file
 *.class
@@ -34,4 +28,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
->>>>>>> 1e523963f636481f016b5896a057194ed97598a5
+.classpath
+.project
+
+/.settings/
+.idea/
+
