@@ -3,6 +3,10 @@ package entity.shipping;
 import entity.order.Order;
 import org.example.DistanceCalculator;
 
+/*
+    SOLID: Vi phạm nguyên lý OCP vì method calculateShippingFee mới chỉ tính 1 cách
+    thành tiền, tính phí có nhiều cách, hoặc sử dụng nhiều lib khác
+*/
 public class DeliveryInfo {
 
     protected String name;
@@ -21,7 +25,8 @@ public class DeliveryInfo {
         this.distanceCalculator = distanceCalculator;
     }
 
-    public int calculateShippingFee(Order order) {
+    public int calculateShippingFee(Order order) {	//Vi pham nguyen tac Stamp Coupling
+    //boi vi truyen doi tuong order vao nhung khong su dung cac thuoc tinh cua doi tuong nay
         int distance = distanceCalculator.calculateDistance(address, province);
         return (int) (distance * 1.2);
     }

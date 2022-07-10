@@ -22,6 +22,13 @@ public class InterbankPayloadConverter {
      * @param contents
      * @return
      */
+    private static InterbankPayloadConverter instance;
+    public synchronized static InterbankPayloadConverter getInstance(){
+        if (instance == null){
+            instance = new InterbankPayloadConverter();
+        }
+        return instance;
+    }
     String convertToRequestPayload(CreditCard card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 

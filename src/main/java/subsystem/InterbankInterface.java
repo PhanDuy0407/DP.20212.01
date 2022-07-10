@@ -12,6 +12,11 @@ import entity.payment.PaymentTransaction;
  * @author hieud
  * 
  */
+
+/**
+ * SOLID: Vi phạm nguyên lý DIP:
+ * Phụ thuộc vào CreditCard là lớp chi tiết 
+ */
 public interface InterbankInterface {
 
 	/**

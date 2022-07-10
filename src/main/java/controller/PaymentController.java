@@ -21,6 +21,12 @@ import subsystem.InterbankSubsystem;
  * @author hieud
  *
  */
+
+/*
+	Ducanh
+	Coincidental cohesion
+	method getExpirationDate is incidental to another method 
+*/
 public class PaymentController extends BaseController {
 
 	/**
