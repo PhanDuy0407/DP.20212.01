@@ -59,19 +59,20 @@ public class MediaHandler extends FXMLScreenHandler {
 	private CartItem cartItem;
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
-
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
 		hboxMedia.setAlignment(Pos.CENTER);
 	}
-	
 	public void setCartItem(CartItem cartItem) {
 		this.cartItem = cartItem;
 		setMediaInfo();
 	}
 
 	private void setMediaInfo() {
+		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+		//tao 1 class setUp, ben trong co cac phuong thuc vd nhu setupData, setupFunctionality, setMediaInfo,... va cho class nay override
+		//lai cac phuong thuc setup do
 		title.setText(cartItem.getMedia().getTitle());
 		price.setText(ViewsConfig.getCurrencyFormat(cartItem.getPrice()));
 		File file = new File(cartItem.getMedia().getImageURL());
@@ -93,6 +94,7 @@ public class MediaHandler extends FXMLScreenHandler {
 				throw new ViewCartException();
 			}
 		});
+
 		initializeSpinner();
 	}
 
@@ -124,7 +126,7 @@ public class MediaHandler extends FXMLScreenHandler {
 			} catch (SQLException e1) {
 				throw new MediaUpdateException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
 			}
-			
+
 		});
 		spinnerFX.setAlignment(Pos.CENTER);
 		spinnerFX.getChildren().add(this.spinner);

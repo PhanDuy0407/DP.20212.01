@@ -35,7 +35,6 @@ import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
 import views.screen.popup.PopupScreen;
 
-
 public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
@@ -70,6 +69,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     private List homeItems;
     private AuthenticationController authenticationController;
 
+//Tat ca cac method khac trong class nay ko su dung den method HomeScreenHandler, getNumediaCartLabel,
+//show, redirectLogin,... nen co the tach ra 1 class khac de tranh vi pham logical cohession
+//Vi class nay da co qua nhieu method ko lien quan gi den nhau
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {
@@ -93,6 +95,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     }
 
     protected void setupData(Object dto) throws Exception {
+        //Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+        //tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+        //lai cac phuong thuc setup do
         setBController(new HomeController());
         this.authenticationController = new AuthenticationController();
         try{
@@ -105,7 +110,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
                 this.homeItems.add(m);
             }
         } catch (SQLException | IOException e){
-            LOGGER.info("Errors occurred: " + e.getMessage());
+            LOGGER.info("Errors occured: " + e.getMessage());
             e.printStackTrace();
         }
     }

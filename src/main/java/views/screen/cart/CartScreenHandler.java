@@ -67,6 +67,9 @@ public class CartScreenHandler extends BaseScreenHandler {
 	}
 
 	protected void setupFunctionality() throws Exception {
+		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+		//lai cac phuong thuc setup do
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");
 		Image im = new Image(file.toURI().toString());
@@ -113,7 +116,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 			}
 
 			placeOrderController.placeOrder();
-			
+
 			// display available media
 			displayCartWithMediaAvailability();
 
@@ -152,7 +155,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		labelVAT.setText(ViewsConfig.getCurrencyFormat(vat));
 		labelAmount.setText(ViewsConfig.getCurrencyFormat(amount));
 	}
-	
+
 	private void displayCartWithMediaAvailability(){
 		// clear all old cartMedia
 		vboxCart.getChildren().clear();

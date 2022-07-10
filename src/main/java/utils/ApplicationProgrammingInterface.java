@@ -17,6 +17,12 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
+
+/*
+	Duc anh
+	procedural cohesion
+	get, and post is done sequentially
+*/
 public class ApplicationProgrammingInterface {
 
 	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -40,6 +46,7 @@ public class ApplicationProgrammingInterface {
 	}
 
 	public static String post(String url, String data) throws IOException {
+		//coincidental cohesion vi trong phuong thuc vua tao ket noi vua thao tac voi du lieu
 		allowMethods("PATCH");
 		HttpURLConnection conn = setupConnection(url);
 		conn.setRequestMethod("PATCH");
