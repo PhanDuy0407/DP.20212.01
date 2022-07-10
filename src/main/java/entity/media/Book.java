@@ -9,7 +9,7 @@ import java.util.List;
 import entity.db.AIMSDB;
 
 public class Book extends Media {
-
+////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     String author;
     String coverType;
     String publisher;
@@ -18,7 +18,7 @@ public class Book extends Media {
     String language;
     String bookCategory;
 
-    public Book() throws SQLException{
+    public Book() throws SQLException{//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
 
     }
 

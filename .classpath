@@ -59,22 +59,12 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/cuongnm/Desktop/DP.20202/DP.20201.01/lib/linux/javafx-sdk-15/lib/javafx.web.jar">
+	<classpathentry kind="lib" path="lib/win/javafx-sdk-15/lib/javafx.base.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/cuongnm/Desktop/DP.20202/DP.20201.01/lib/linux/javafx-sdk-15/lib/javafx-swt.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/cuongnm/Desktop/DP.20202/DP.20201.01/lib/distance-api-1.0-SNAPSHOT.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/cuongnm/Desktop/DP.20202/DP.20201.01/lib/sqlite-jdbc-3.7.2.jar">
+	<classpathentry kind="lib" path="lib/win/javafx-sdk-15/lib/javafx-swt.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -85,5 +75,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib"/>
+	<classpathentry kind="lib" path="lib/distance-api-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX15"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

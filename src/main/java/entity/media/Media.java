@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author nguyenlm
  */
 public class Media {
-
+////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     private static Logger LOGGER = Utils.getLogger(Media.class.getName());
 
     protected Statement stm;
@@ -27,8 +27,8 @@ public class Media {
     protected String imageURL;
     protected boolean rushSupported;
 
-    // Content coupling: Truy cập vào trạng thái của Connect 
-    public Media() throws SQLException{
+    // Content coupling: Truy cập vào trạng thái của Connect
+    public Media() throws SQLException{//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
         stm = AIMSDB.getConnection().createStatement();
     }
 
@@ -53,7 +53,7 @@ public class Media {
         return updated_quantity;
     }
 
-    // getter and setter 
+    // getter and setter
     public int getId() {
         return this.id;
     }
