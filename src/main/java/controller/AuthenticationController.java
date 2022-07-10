@@ -31,34 +31,43 @@ public class AuthenticationController extends BaseController {
 //thanh cac class khac nhau vi xac thuc qua nhieu thong tin trong 1 class se gay code kho doc va chinh sua
 //ngoai ra nhung cap xac thuc ma ko lien quan gi den nhau thi nen cho sang cac class khac
     public boolean isAnonymousSession() {
-        try {
+        try
+        {
             getMainUser();
             return false;
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             return true;
         }
     }
 
     public User getMainUser() throws ExpiredSessionException {
-        if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
+        if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now()))
+        {
             logout();
             throw new ExpiredSessionException();
-        } else return SessionInformation.mainUser.cloneInformation();
+        }
+        else return SessionInformation.mainUser.cloneInformation();
     }
 
     public void login(String email, String password) throws Exception {
-        try {
+        try
+        {
         	Security security = Security.getInstance();
             User user = new UserDAO().authenticate(email,security.md5Encryption(password));
             if (Objects.isNull(user)) throw new FailLoginException();
             SessionInformation.mainUser = user;
             SessionInformation.expiredTime = LocalDateTime.now().plusHours(24);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             throw new FailLoginException();
         }
     }
 
-    public void logout() {
+    public void logout()
+    {
         SessionInformation.mainUser = null;
         SessionInformation.expiredTime = null;
     }
@@ -70,6 +79,4 @@ public class AuthenticationController extends BaseController {
      * @param message - plain text as {@link String String}.
      * @return cipher text as {@link String String}.
      */
-
-
 }

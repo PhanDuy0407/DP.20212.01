@@ -38,7 +38,8 @@ public class InterbankPayloadConverter {
 
     private static InterbankPayloadConverter instance;
     public synchronized static InterbankPayloadConverter getInstance(){
-        if (instance == null){
+        if (instance == null)
+        {
             instance = new InterbankPayloadConverter();
         }
         return instance;
@@ -46,9 +47,11 @@ public class InterbankPayloadConverter {
     String convertToRequestPayload(Card card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 
-        try {
+        try
+        {
             transaction.putAll(MyMap.toMyMap(card));
-        } catch (IllegalArgumentException | IllegalAccessException e) {
+        } catch (IllegalArgumentException | IllegalAccessException e)
+        {
             // TODO Auto-generated catch block
             throw new InvalidCardException();
         }
@@ -69,7 +72,8 @@ public class InterbankPayloadConverter {
      * @param responseText
      * @return
      */
-    PaymentTransaction extractPaymentTransaction(String responseText) {
+    PaymentTransaction extractPaymentTransaction(String responseText)
+    {
         MyMap response = convertJSONResponse(responseText);
 
         if (response == null)
@@ -118,7 +122,8 @@ public class InterbankPayloadConverter {
      * @param responseText
      * @return
      */
-    private MyMap convertJSONResponse(String responseText) {
+    private MyMap convertJSONResponse(String responseText)
+    {
         MyMap response = null;
         try {
             response = MyMap.toMyMap(responseText, 0);
@@ -136,7 +141,8 @@ public class InterbankPayloadConverter {
      * @author hieudm
      * @return the current time as {@link String String}.
      */
-    private String getToday() {
+    private String getToday()
+    {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);

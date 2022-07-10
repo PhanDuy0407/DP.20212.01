@@ -30,7 +30,6 @@ import subsystem.InterbankSubsystem;
 */
 public class PaymentController extends BaseController {
 
-
 	private SimpleCardFactory cardFactory = new SimpleCardFactory();
 	//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
 	//nhung 2 method nay ko su dung du lieu cua nhau nen co the tach 2 class rieng biet
@@ -57,9 +56,11 @@ public class PaymentController extends BaseController {
 	 * @throws InvalidCardException - if the string does not represent a valid date
 	 *                              in the expected format
 	 */
-	private String getExpirationDate(String date) throws InvalidCardException {
+	private String getExpirationDate(String date) throws InvalidCardException
+	{
 		String[] strs = date.split("/");
-		if (strs.length != 2) {
+		if (strs.length != 2)
+		{
 			throw new InvalidCardException();
 		}
 
@@ -67,26 +68,31 @@ public class PaymentController extends BaseController {
 		int month = -1;
 		int year = -1;
 
-		try {
+		try
+		{
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
 			/**
 			 * author: Ducanh
 			 * Clean code: tạo 1 level of abstraction bằng chuyển logic valid tháng năm thành method 
 			 */
-			if (isValidTimeOrder(month, year)) {
+			if (isValidTimeOrder(month, year))
+			{
 				throw new InvalidCardException();
 			}
 			expirationDate = strs[0] + strs[1];
 
-		} catch (Exception ex) {
+		}
+		catch (Exception ex)
+		{
 			throw new InvalidCardException();
 		}
 
 		return expirationDate;
 	}
 
-	private boolean isValidTimeOrder(int month, int year){
+	private boolean isValidTimeOrder(int month, int year)
+	{
 		Validate validate = Validate.getInstance();
 		boolean isValid = validate.validateTimeOrder(month, year);
 		return isValid;
@@ -105,10 +111,12 @@ public class PaymentController extends BaseController {
 	 *         message.
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode) {
+			String expirationDate, String securityCode)
+	{
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
-		try {
+		try
+		{
 			expirationDate = getExpirationDate(expirationDate);
 		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi 
 
@@ -126,7 +134,9 @@ public class PaymentController extends BaseController {
 
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");
 			result.put("MESSAGE", "You have successfully paid the order!");
-		} catch (PaymentException | UnrecognizedException ex) {
+		}
+		catch (PaymentException | UnrecognizedException ex)
+		{
 			result.put("MESSAGE", ex.getMessage());
 		}
 		return result;
