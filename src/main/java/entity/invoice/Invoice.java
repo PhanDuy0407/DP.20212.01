@@ -6,8 +6,8 @@ public class Invoice {
 
     private Order order;
     private int amount;
-    
-    public Invoice(){
+
+    public Invoice(){//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
 
     }
 
@@ -29,6 +29,6 @@ public class Invoice {
     }
 
     public void saveInvoice(){
-        
+
     }
 }

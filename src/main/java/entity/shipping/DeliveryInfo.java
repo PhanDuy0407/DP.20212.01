@@ -4,7 +4,7 @@ import entity.order.Order;
 import org.example.DistanceCalculator;
 
 public class DeliveryInfo {
-
+    ////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     protected String name;
     protected String phone;
     protected String province;
@@ -21,7 +21,8 @@ public class DeliveryInfo {
         this.distanceCalculator = distanceCalculator;
     }
 
-    public int calculateShippingFee(Order order) {
+    public int calculateShippingFee(Order order) {	//Vi pham nguyen tac Stamp Coupling
+    //boi vi truyen doi tuong order vao nhung khong su dung cac thuoc tinh cua doi tuong nay
         int distance = distanceCalculator.calculateDistance(address, province);
         return (int) (distance * 1.2);
     }

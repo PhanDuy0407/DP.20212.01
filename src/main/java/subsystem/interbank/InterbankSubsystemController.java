@@ -8,7 +8,9 @@ public class InterbankSubsystemController {
 	private static InterbankPayloadConverter interbankPayloadConverter = new InterbankPayloadConverter();
 	private static InterbankBoundary interbankBoundary = new InterbankBoundary();
 
-	public PaymentTransaction refund(CreditCard card, int amount, String contents) {
+	public PaymentTransaction refund(CreditCard card, int amount, String contents) {	//Vi pham nguyen tac Stamp Coupling
+	//boi vi truyen doi tuong card vao nhung khong su dung toi cac thanh phan cua doi tuong
+	//class nao implement lai interface refund thi moi can truyen cac doi tuong vao
 		return null;
 	}
 
