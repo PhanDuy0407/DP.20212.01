@@ -1,6 +1,7 @@
 package subsystem.interbank;
 
 import common.exception.*;
+import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
 import utils.MyMap;
@@ -22,7 +23,28 @@ public class InterbankPayloadConverter {
      * @param contents
      * @return
      */
-    String convertToRequestPayload(CreditCard card, int amount, String contents) {
+
+    /**
+     * author: Duc Anh
+     * Clean code: Chuyển các mã code thành hằng số 
+     */
+    private static final String Success = "00";
+    private static final String InvalidCard = "01";
+    private static final String NotEnoughBalance = "02";
+    private static final String InternalServerError = "03";
+    private static final String SuspiciousTransaction = "04";
+    private static final String NotEnoughTransactionInfo = "05";
+    private static final String InvalidVersion = "06";
+    private static final String InvalidTransactionAmount = "07";
+
+    private static InterbankPayloadConverter instance;
+    public synchronized static InterbankPayloadConverter getInstance(){
+        if (instance == null){
+            instance = new InterbankPayloadConverter();
+        }
+        return instance;
+    }
+    String convertToRequestPayload(Card card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 
         try {
@@ -69,21 +91,21 @@ public class InterbankPayloadConverter {
                 (String) transaction.get("createdAt"));
 
         switch (trans.getErrorCode()) {
-            case "00":
+            case Success:
                 break;
-            case "01":
+            case InvalidCard:
                 throw new InvalidCardException();
-            case "02":
+            case NotEnoughBalance:
                 throw new NotEnoughBalanceException();
-            case "03":
+            case InternalServerError:
                 throw new InternalServerErrorException();
-            case "04":
+            case SuspiciousTransaction:
                 throw new SuspiciousTransactionException();
-            case "05":
+            case NotEnoughTransactionInfo :
                 throw new NotEnoughTransactionInfoException();
-            case "06":
+            case InvalidVersion:
                 throw new InvalidVersionException();
-            case "07":
+            case InvalidTransactionAmount:
                 throw new InvalidTransactionAmountException();
             default:
                 throw new UnrecognizedException();
@@ -107,7 +129,8 @@ public class InterbankPayloadConverter {
         }
         return response;
     }
-
+    //coincidental cohesion vi ham getToday khong can dung chung du lieu voi cac phuong thuc khac trong class.
+    //co the tach ra class khac roi goi den
     /**
      * Return a {@link String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *
