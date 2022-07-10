@@ -91,6 +91,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     }
 
     protected void setupData(Object dto) throws Exception {
+        //Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+        //tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+        //lai cac phuong thuc setup do
         setBController(new HomeController());
         this.authenticationController = new AuthenticationController();
         try{

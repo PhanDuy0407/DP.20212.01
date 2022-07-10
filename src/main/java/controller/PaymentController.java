@@ -15,6 +15,15 @@ import helper.Validate;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
+
+/**
+ * This {@code PaymentController} class control the flow of the payment process
+ * in our AIMS Software.
+ *
+ * @author hieud
+ *
+ */
+
 /*
 	Coincidental cohesion
 	method getExpirationDate is incidental to another method
@@ -62,7 +71,6 @@ public class PaymentController extends BaseController {
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
 			/**
-			 * author: Ducanh
 			 * Clean code: tạo 1 level of abstraction bằng chuyển logic valid tháng năm thành method 
 			 */
 			if (isValidTimeOrder(month, year)) {
