@@ -29,7 +29,17 @@ public class Order {
         List<OrderItem> orderItems = new ArrayList<>();
         for (Object object : SessionInformation.cartInstance.getListMedia()) {
             CartItem cartItem = (CartItem) object;
-            OrderItem orderItem = new OrderItem(cartItem.getMedia(),
+            //Them vao src.main.java.controller.FactoryOrderItem.java
+            //public class FactoryOrderItem {
+            //    public FactoryOrderItem(){};
+            //    public OrderItem orderItem(Media media, int quantity, int price){
+            //           return new OrderItem(cartItem.getMedia(),
+            //                    cartItem.getQuantity(),
+            //                    cartItem.getPrice());
+            //    }
+            //}
+            OrderItem orderItem = new OrderItem(cartItem.getMedia(),    //nen su dung phuong thuc FactoryOrderItem nhu tren
+                    //vi sau nay co them chuc nang xem chi tiet san pham
                     cartItem.getQuantity(),
                     cartItem.getPrice());
             orderItems.add(orderItem);

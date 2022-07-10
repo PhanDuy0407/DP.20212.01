@@ -77,6 +77,5 @@
 	<classpathentry kind="lib" path="lib"/>
 	<classpathentry kind="lib" path="lib/distance-api-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.7.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX15"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

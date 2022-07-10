@@ -18,20 +18,23 @@ import subsystem.InterbankSubsystem;
 /**
  * This {@code PaymentController} class control the flow of the payment process
  * in our AIMS Software.
- * 
+ *
  * @author hieud
  *
  */
 
 /*
 	Coincidental cohesion
-	method getExpirationDate is incidental to another method 
+	method getExpirationDate is incidental to another method
 */
 public class PaymentController extends BaseController {
+
 
 	private SimpleCardFactory cardFactory = new SimpleCardFactory();
 	//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
 	//nhung 2 method nay ko su dung du lieu cua nhau nen co the tach 2 class rieng biet
+
+
 	/**
 	 * Represent the card used for payment
 	 */
@@ -46,7 +49,7 @@ public class PaymentController extends BaseController {
 	 * Validate the input date which should be in the format "mm/yy", and then
 	 * return a {@link String String} representing the date in the
 	 * required format "mmyy" .
-	 * 
+	 *
 	 * @param date - the {@link String String} represents the input date
 	 * @return {@link String String} - date representation of the required
 	 *         format
@@ -80,7 +83,7 @@ public class PaymentController extends BaseController {
 
 	/**
 	 * Pay order, and then return the result with a message.
-	 * 
+	 *
 	 * @param amount         - the amount to pay
 	 * @param contents       - the transaction contents
 	 * @param cardNumber     - the card number
@@ -97,6 +100,7 @@ public class PaymentController extends BaseController {
 		try {
 			expirationDate = getExpirationDate(expirationDate);
 		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi 
+
 //			this.card = new CreditCard(
 //					cardNumber,
 //					cardHolderName,
