@@ -15,18 +15,6 @@ import helper.Validate;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
-<<<<<<< HEAD
-=======
-
-/**
- * This {@code PaymentController} class control the flow of the payment process
- * in our AIMS Software.
- *
- * @author hieud
- *
- */
-
->>>>>>> 9252411cba2ef6e236b0bbaaf4b5fb41b8514b4b
 /*
 	Coincidental cohesion
 	method getExpirationDate is incidental to another method

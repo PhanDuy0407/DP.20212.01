@@ -3,18 +3,14 @@ package entity.shipping;
 import entity.order.Order;
 import org.example.DistanceCalculator;
 
-<<<<<<< HEAD
 import adapter.AdapterOldLibDistance;
 import common.interfaces.DistanceCalculatorInterface;
 
-=======
->>>>>>> 9252411cba2ef6e236b0bbaaf4b5fb41b8514b4b
 /*
     SOLID: Vi phạm nguyên lý OCP vì method calculateShippingFee mới chỉ tính 1 cách
     thành tiền, tính phí có nhiều cách, hoặc sử dụng nhiều lib khác
 */
 public class DeliveryInfo {
-<<<<<<< HEAD
 	//// Vi pham implement singleton: tat ca cac thuoc tinh phai de o access
 	//// modifier private
 	protected String name;
@@ -26,15 +22,6 @@ public class DeliveryInfo {
 	private static final double MULTIPLIER = 1.2;
 
 	public DeliveryInfo() {
-=======
-    ////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
-    protected String name;
-    protected String phone;
-    protected String province;
-    protected String address;
-    protected String shippingInstructions;
-    protected DistanceCalculator distanceCalculator;
->>>>>>> 9252411cba2ef6e236b0bbaaf4b5fb41b8514b4b
 
 	}
 
