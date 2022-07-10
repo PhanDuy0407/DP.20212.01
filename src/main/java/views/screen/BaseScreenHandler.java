@@ -51,7 +51,7 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 		this.bController = bController;
 	}
 
-	public BaseController getBController(){
+	public BaseController getBaseController(){
 		return this.bController;
 	}
 

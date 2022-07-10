@@ -56,7 +56,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 	public CartScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
 		try {
-			setupFunctionality();
+			configBaseFuncionality();
 		} catch (IOException ex) {
 			LOGGER.info(ex.getMessage());
 			PopupScreen.error("Error when loading resources.");
@@ -66,7 +66,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		}
 	}
 
-	protected void setupFunctionality() throws Exception {
+	protected void configBaseFuncionality() throws Exception {
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");
 		Image im = new Image(file.toURI().toString());
@@ -91,14 +91,14 @@ public class CartScreenHandler extends BaseScreenHandler {
 		});
 	}
 
-	public ViewCartController getBController(){
-		return (ViewCartController) super.getBController();
+	public ViewCartController getBaseController(){
+		return (ViewCartController) super.getBaseController();
 	}
 
 	public void requestToViewCart(BaseScreenHandler prevScreen) throws SQLException {
 		setPreviousScreen(prevScreen);
 		setScreenTitle("Cart Screen");
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 		show();
 	}
@@ -136,13 +136,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 	}
 
 	public void updateCart() throws SQLException{
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 	}
 
 	void updateCartAmount(){
 		// calculate subtotal and amount
-		int subtotal = getBController().getCartSubtotal();
+		int subtotal = getBaseController().getCartSubtotal();
 		int vat = (int)((ViewsConfig.PERCENT_VAT/100)*subtotal);
 		int amount = subtotal + vat;
 		LOGGER.info("amount" + amount);
@@ -158,7 +158,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		vboxCart.getChildren().clear();
 
 		// get list media of cart after check availability
-		List<?> lstMedia = getBController().getListCartMedia();
+		List<?> lstMedia = getBaseController().getListCartMedia();
 
 		try {
 			for (Object cm : lstMedia) {
