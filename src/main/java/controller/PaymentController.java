@@ -11,6 +11,7 @@ import entity.cart.Cart;
 import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
+import helper.Validate;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
@@ -30,9 +31,12 @@ import subsystem.InterbankSubsystem;
 */
 public class PaymentController extends BaseController {
 
-//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
-//nhung 2 method nay ko su dung du lieu cua nhau nen co the tach 2 class rieng biet
+
 	private SimpleCardFactory cardFactory = new SimpleCardFactory();
+	//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
+	//nhung 2 method nay ko su dung du lieu cua nhau nen co the tach 2 class rieng biet
+
+
 	/**
 	 * Represent the card used for payment
 	 */
@@ -67,7 +71,11 @@ public class PaymentController extends BaseController {
 		try {
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
-			if (month < 1 || month > 12 || year < Calendar.getInstance().get(Calendar.YEAR) % 100 || year > 100) {
+			/**
+			 * author: Ducanh
+			 * Clean code: tạo 1 level of abstraction bằng chuyển logic valid tháng năm thành method 
+			 */
+			if (isValidTimeOrder(month, year)) {
 				throw new InvalidCardException();
 			}
 			expirationDate = strs[0] + strs[1];
@@ -77,6 +85,12 @@ public class PaymentController extends BaseController {
 		}
 
 		return expirationDate;
+	}
+
+	private boolean isValidTimeOrder(int month, int year){
+		Validate validate = Validate.getInstance();
+		boolean isValid = validate.validateTimeOrder(month, year);
+		return isValid;
 	}
 
 	/**
@@ -97,7 +111,8 @@ public class PaymentController extends BaseController {
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
 			expirationDate = getExpirationDate(expirationDate);
-		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi
+		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi 
+
 //			this.card = new CreditCard(
 //					cardNumber,
 //					cardHolderName,

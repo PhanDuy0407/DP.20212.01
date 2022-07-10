@@ -7,7 +7,10 @@ import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
+import entity.shipping.LastestDistanceCalculate;
 import entity.shipping.ShippingConfigs;
+import helper.Validate;
+
 import org.example.DistanceCalculator;
 
 import java.io.IOException;
@@ -67,14 +70,15 @@ public class PlaceOrderController extends BaseController {
     public DeliveryInfo processDeliveryInfo(HashMap info) throws InterruptedException, IOException, InvalidDeliveryInfoException {
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
-        validateDeliveryInfo(info);
+        Validate validate = Validate.getInstance();
+        validate.validateDeliveryInfo(info);
         DeliveryInfo deliveryInfo = new DeliveryInfo(
                 String.valueOf(info.get("name")),
                 String.valueOf(info.get("phone")),
                 String.valueOf(info.get("province")),
                 String.valueOf(info.get("address")),
                 String.valueOf(info.get("instructions")),
-                new DistanceCalculator());
+                new LastestDistanceCalculate());
         System.out.println(deliveryInfo.getProvince());
         return deliveryInfo;
     }
@@ -85,37 +89,6 @@ public class PlaceOrderController extends BaseController {
    * @throws InterruptedException
    * @throws IOException
    */
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException, InvalidDeliveryInfoException {
-        if (validatePhoneNumber(info.get("phone"))
-        || validateName(info.get("name"))
-        || validateAddress(info.get("address"))) return;
-        else throw new InvalidDeliveryInfoException();
-    }
     
-    public boolean validatePhoneNumber(String phoneNumber) {
-        if (phoneNumber.length() != 10) return false;
-        if (!phoneNumber.startsWith("0")) return false;
-        try {
-            Integer.parseInt(phoneNumber);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
     
-    public boolean validateName(String name) {
-        if (Objects.isNull(name)) return false;
-        String patternString = "^[a-zA-Z\\s]*$";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(name);
-        return matcher.matches();
-    }
-    
-    public boolean validateAddress(String address) {
-        if (Objects.isNull(address)) return false;
-        String patternString = "^[a-zA-Z\\s]*$";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(address);
-        return matcher.matches();
-    }
 }
