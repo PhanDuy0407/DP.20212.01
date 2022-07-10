@@ -8,7 +8,7 @@ import java.util.*;
  * To create a new JSON object,
  * JSON jsonObject = new JSON();
  * jsonObject.put("key", value);
- *
+ * 
  * @author hieud
  *
  */
@@ -17,7 +17,7 @@ public class MyMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Return a {@link String String} that represents the JSON object.
-	 *
+	 * 
 	 * @author hieudm
 	 *         https://hg.openjdk.java.net/jdk8/jdk8/jdk/file/tip/src/share/classes/java/util/Hashtable.java
 	 * @return a {@link String String}.
@@ -53,7 +53,7 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Return a {@link Map Map} that represents the mapping among
 	 * attribute names and their values of an object.
-	 *
+	 * 
 	 * @author hieudm
 	 *         https://stackoverflow.com/questions/52406467/convert-object-to-map-in-java
 	 * @param obj - an arbitrary {@link Object Object}.
@@ -89,16 +89,16 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Return a {@link String String} that represents the term in between
 	 * 2 double quote.
-	 *
+	 * 
 	 * @author hieudm
-	 * @param
+	 * @param 
 	 * str - {@link String String}
 	 * idx - the index of the open quote
 	 * @return the term as {@link String String}
 	 * @throws IllegalArgumentException
 	 */
 	private static String getNextTerm(String str, int idx) {
-		if (CanTheInputBeResolved(str, idx)) {
+		if (str == null || idx >= str.length() || str.charAt(idx) != '"') {
 			throw new IllegalArgumentException("Cannot resolve the input.");
 		}
 
@@ -120,16 +120,11 @@ public class MyMap extends LinkedHashMap<String, Object> {
 		offset = result.length() + 2; // update iterator with the term and the 2 double quotes
 		return sb.toString();
 	}
-
-	private static boolean CanTheInputBeResolved(String str, int idx) {
-		return str == null || idx >= str.length() || str.charAt(idx) != '"';
-	}
-
 	/**
 	 * Return a {@link MyMap MyMap} that represents the interested substring in a {@link String String}.
-	 *
+	 * 
 	 * @author hieudm
-	 * @param
+	 * @param 
 	 * str - {@link String String}
 	 * idx - the index of the first character in the interested substring in the {@link String String}
 	 * @return the term as {@link MyMap MyMap}
@@ -168,8 +163,7 @@ public class MyMap extends LinkedHashMap<String, Object> {
 				sb.append(str.subSequence(i, i + offset));
 
 				i += offset;
-				offset = 0;	//Vi pham nguyen tac logic cohesion vi set gia tri cua bien = 0 dan den lenh
-				//sb.append(str.subSequence(i, i + offset)) o phia duoi khong co tac dung gi
+				offset = 0;
 
 				// check colon
 				sb.append(str.charAt(i));

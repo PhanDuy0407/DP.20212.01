@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 import common.exception.MediaUpdateException;
 import common.exception.ViewCartException;
-import common.interfaces.Observable;
-import common.interfaces.Observer;
 import controller.SessionInformation;
 import entity.cart.Cart;
 import entity.cart.CartItem;
@@ -28,7 +25,7 @@ import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
 
-public class MediaHandler extends FXMLScreenHandler implements Observable {
+public class MediaHandler extends FXMLScreenHandler {
 
 	private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
 
@@ -62,22 +59,17 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 	private CartItem cartItem;
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
-	private List<Observer> listObserver;
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
 		hboxMedia.setAlignment(Pos.CENTER);
 	}
-
 	public void setCartItem(CartItem cartItem) {
 		this.cartItem = cartItem;
 		setMediaInfo();
 	}
 
 	private void setMediaInfo() {
-		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
-		//tao 1 class setUp, ben trong co cac phuong thuc vd nhu setupData, setupFunctionality, setMediaInfo,... va cho class nay override
-		//lai cac phuong thuc setup do
 		title.setText(cartItem.getMedia().getTitle());
 		price.setText(ViewsConfig.getCurrencyFormat(cartItem.getPrice()));
 		File file = new File(cartItem.getMedia().getImageURL());
@@ -131,31 +123,9 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 			} catch (SQLException e1) {
 				throw new MediaUpdateException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
 			}
-
+			
 		});
 		spinnerFX.setAlignment(Pos.CENTER);
 		spinnerFX.getChildren().add(this.spinner);
 	}
-
-
-	@Override
-	public void attach(Observer observer) {
-		// TODO Auto-generated method stub
-		listObserver.add(observer);
-	}
-
-	@Override
-	public void remove(Observer observer) {
-		// TODO Auto-generated method stub
-		if (listObserver.size() > 0) {
-			listObserver.remove(observer);
-		}
-	}
-
-	@Override
-	public void notifyObservers() {
-		// TODO Auto-generated method stub
-		listObserver.forEach(observer -> observer.update(this));
-	}
 }
-

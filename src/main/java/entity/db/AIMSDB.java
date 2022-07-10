@@ -14,13 +14,6 @@ import utils.*;
 */
 public class AIMSDB {
 
-    /**
-     * Clean code: Thay đổi các giá trị string bằng hằng số
-     */
-
-    private static final String NAME_JDBC = "org.sqlite.JDBC";
-    private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/assets/db/aims.db";
-
 	private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
 	private static Connection connect;
     // TODO: refactor Utils -> limit connections
@@ -28,8 +21,8 @@ public class AIMSDB {
     public static Connection getConnection() {
         if (connect != null) return connect;
         try {
-			Class.forName(NAME_JDBC);
-            String url = DATABASE_URL;
+			Class.forName("org.sqlite.JDBC");
+            String url = "jdbc:sqlite:src/main/resources/assets/db/aims.db";
             connect = DriverManager.getConnection(url);
             LOGGER.info("Connect database successfully");
         } catch (Exception e) {
@@ -39,8 +32,6 @@ public class AIMSDB {
     }
 
 
-//Vi pham nguyen tac temproral cohesion: ham main se duoc goi truoc xong roi ham GetConnection se duoc goi sau do nhung
-//chung ko lien quan gi den nhau vi chi co 1 ham Main duy nhat duoc goi khi chuong trinh thuc thi tai file App.java
     public static void main(String[] args) {
         AIMSDB.getConnection();
     }

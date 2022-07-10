@@ -9,6 +9,7 @@ import entity.shipping.ShippingConfigs;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,8 +22,10 @@ import views.screen.invoice.InvoiceScreenHandler;
 import views.screen.popup.PopupScreen;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class ShippingScreenHandler extends BaseScreenHandler {
@@ -64,34 +67,20 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 	}
 
 	protected void setupData(Object dto) throws Exception {
-		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
-		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
-		//lai cac phuong thuc setup do
 		this.order = (Order) dto;
 		this.province.getItems().addAll(ShippingConfigs.PROVINCES);
 		this.province.getSelectionModel().select(ShippingConfigs.RUSH_SUPPORT_PROVINCES_INDEX[0]);
 	}
 
 	protected void setupFunctionality() throws Exception {
-		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
-		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
-		//lai cac phuong thuc setup do
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
 		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
 			if(newValue && firstTime.get()){
-				DelegateTheForCusToContainer();
-				VariableValueChangedForFutureReferences(firstTime);
+				content.requestFocus(); // Delegate the focus to container
+				firstTime.setValue(false); // Variable value changed for future references
 			}
 		});
 
-	}
-
-	private void VariableValueChangedForFutureReferences(BooleanProperty firstTime) {
-		firstTime.setValue(false);
-	}
-
-	private void DelegateTheForCusToContainer() {
-		content.requestFocus();
 	}
 
 	@FXML
@@ -99,24 +88,14 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 
 		// validate delivery info and prepare order info
 		preprocessDeliveryInfo();
-
-//		Invoice invoice = getBController().createInvoice(order);
-//		BaseScreenHandler InvoiceScreenHandler = new InvoiceScreenHandler(this.stage, ViewsConfig.INVOICE_SCREEN_PATH, invoice);
-//		InvoiceScreenHandler.setPreviousScreen(this);
-//		InvoiceScreenHandler.setHomeScreenHandler(homeScreenHandler);
-//		InvoiceScreenHandler.setScreenTitle("Invoice Screen");
-//		InvoiceScreenHandler.setBController(getBController());
-//		InvoiceScreenHandler.show();
-		CreateInvoiceScreen();
-	}
-
-	private void CreateInvoiceScreen() throws IOException {
-		Invoice invoice = getBaseController().createInvoice(order);
+		
+		// create invoice screen
+		Invoice invoice = getBController().createInvoice(order);
 		BaseScreenHandler InvoiceScreenHandler = new InvoiceScreenHandler(this.stage, ViewsConfig.INVOICE_SCREEN_PATH, invoice);
 		InvoiceScreenHandler.setPreviousScreen(this);
 		InvoiceScreenHandler.setHomeScreenHandler(homeScreenHandler);
 		InvoiceScreenHandler.setScreenTitle("Invoice Screen");
-		InvoiceScreenHandler.setBController(getBaseController());
+		InvoiceScreenHandler.setBController(getBController());
 		InvoiceScreenHandler.show();
 	}
 
@@ -131,7 +110,7 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 		DeliveryInfo deliveryInfo;
 		try {
 			// process and validate delivery info
-			deliveryInfo = getBaseController().processDeliveryInfo(messages);
+			deliveryInfo = getBController().processDeliveryInfo(messages);
 		} catch (InvalidDeliveryInfoException e) {
 			// TODO: implement pop up screen
 			throw new InvalidDeliveryInfoException(e.getMessage());
@@ -140,8 +119,8 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 		order.setDeliveryInfo(deliveryInfo);
 	}
 
-	public PlaceOrderController getBaseController(){
-		return (PlaceOrderController) super.getBaseController();
+	public PlaceOrderController getBController(){
+		return (PlaceOrderController) super.getBController();
 	}
 
 	public void notifyError(){

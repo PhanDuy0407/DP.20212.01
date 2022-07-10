@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import common.interfaces.MediaDetailInterface;
+import common.exception.MediaNotAvailableException;
 import common.interfaces.Observable;
 import common.interfaces.Observer;
+import entity.cart.Cart;
+import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,81 +23,77 @@ import javafx.scene.image.ImageView;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
-import views.screen.detail.MediaDetailAbstract;
 import views.screen.popup.PopupScreen;
-
 public class MediaHandler extends FXMLScreenHandler implements Observable {
 
-	@FXML
-	protected ImageView mediaImage;
+    @FXML
+    protected ImageView mediaImage;
 
-	@FXML
-	protected Label mediaTitle;
+    @FXML
+    protected Label mediaTitle;
 
-	@FXML
-	protected Label mediaPrice;
+    @FXML
+    protected Label mediaPrice;
 
-	@FXML
-	protected Label mediaAvail;
+    @FXML
+    protected Label mediaAvail;
 
-	@FXML
-	protected Spinner<Integer> spinnerChangeNumber;
+    @FXML
+    protected Spinner<Integer> spinnerChangeNumber;
 
-	@FXML
-	protected Button addToCartBtn;
+    @FXML
+    protected Button addToCartBtn;
 
-	private MediaDetailAbstract mediaDetail;
+    private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
+    private Media media;
+    private List<Observer> observerList;
+    public MediaHandler(String screenPath, Media media) throws SQLException, IOException{
+        super(screenPath);
+        this.media = media;
+        this.observerList = new ArrayList<>();
+        addToCartBtn.setOnMouseClicked(event -> {
+            notifyObservers();
+        });
+        setMediaInfo();
+    }
 
-	private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
-	private Media media;
-	private List<Observer> observerList;
+    Media getMedia(){
+        return media;
+    }
+    int getRequestQuantity() {
+        return spinnerChangeNumber.getValue();
+    }
 
-	public MediaHandler(String screenPath, Media media) throws SQLException, IOException {
-		super(screenPath);
-		this.media = media;
-		this.observerList = new ArrayList<>();
-		addToCartBtn.setOnMouseClicked(event -> {
-			notifyObservers();
-		});
-		setMediaInfo();
-	}
+    private void setMediaInfo() throws SQLException {
+        // set the cover image of media
+        File file = new File(media.getImageURL());
+        Image image = new Image(file.toURI().toString());
+        mediaImage.setFitHeight(160);
+        mediaImage.setFitWidth(152);
+        mediaImage.setImage(image);
 
-	Media getMedia() {
-		return media;
-	}
+        mediaTitle.setText(media.getTitle());
+        mediaPrice.setText(ViewsConfig.getCurrencyFormat(media.getPrice()));
+        mediaAvail.setText(Integer.toString(media.getQuantity()));
+        spinnerChangeNumber.setValueFactory(
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
+        );
 
-	int getRequestQuantity() {
-		return spinnerChangeNumber.getValue();
-	}
+        setImage(mediaImage, media.getImageURL());
+    }
 
-	private void setMediaInfo() throws SQLException {
-		// set the cover image of media
-		File file = new File(media.getImageURL());
-		Image image = new Image(file.toURI().toString());
-		mediaImage.setFitHeight(160);
-		mediaImage.setFitWidth(152);
-		mediaImage.setImage(image);
+    @Override
+    public void attach(Observer observer) {
+        observerList.add(observer);
+    }
 
-		mediaTitle.setText(media.getTitle());
-		mediaPrice.setText(ViewsConfig.getCurrencyFormat(media.getPrice()));
-		mediaAvail.setText(Integer.toString(media.getQuantity()));
-		spinnerChangeNumber.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1));
+    @Override
+    public void remove(Observer observer) {
+        observerList.remove(observer);
+    }
 
-		setImage(mediaImage, media.getImageURL());
-	}
-
-	@Override
-	public void attach(Observer observer) {
-		observerList.add(observer);
-	}
-
-	@Override
-	public void remove(Observer observer) {
-		observerList.remove(observer);
-	}
-
-	@Override
-	public void notifyObservers() {
-		observerList.forEach(observer -> observer.update(this));
-	}
+    @Override
+    public void notifyObservers() {
+        observerList.forEach(observer -> observer.update(this));
+    }
 }

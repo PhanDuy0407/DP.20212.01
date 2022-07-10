@@ -6,14 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 public class CD extends Media {
-////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
 
     String artist;
     String recordLabel;
     String musicType;
     Date releasedDate;
 
-    public CD() throws SQLException{//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
+    public CD() throws SQLException{
 
     }
 

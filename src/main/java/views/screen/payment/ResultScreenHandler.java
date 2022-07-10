@@ -1,10 +1,13 @@
 package views.screen.payment;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -15,8 +18,6 @@ import views.screen.popup.PopupScreen;
 
 public class ResultScreenHandler extends BaseScreenHandler {
 
-//Vi pham nguyen ly logic cohesion: cac thao tac setUp chi lien quan logic den nhau chu ko chia se du lieu
-//cho nhau nen co the implement tu 1 interface setUp
 	private static final Logger LOGGER = Utils.getLogger(PaymentScreenHandler.class.getName());
 
 	private String result;

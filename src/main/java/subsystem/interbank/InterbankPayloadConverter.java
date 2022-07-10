@@ -1,8 +1,6 @@
 package subsystem.interbank;
 
 import common.exception.*;
-import controller.DateController;
-import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
 import utils.MyMap;
@@ -24,20 +22,6 @@ public class InterbankPayloadConverter {
      * @param contents
      * @return
      */
-
-    /**
-     * author
-     * Clean code: Chuyển các mã code thành hằng số 
-     */
-    private static final String Success = "00";
-    private static final String InvalidCard = "01";
-    private static final String NotEnoughBalance = "02";
-    private static final String InternalServerError = "03";
-    private static final String SuspiciousTransaction = "04";
-    private static final String NotEnoughTransactionInfo = "05";
-    private static final String InvalidVersion = "06";
-    private static final String InvalidTransactionAmount = "07";
-
     private static InterbankPayloadConverter instance;
     public synchronized static InterbankPayloadConverter getInstance(){
         if (instance == null){
@@ -45,7 +29,7 @@ public class InterbankPayloadConverter {
         }
         return instance;
     }
-    String convertToRequestPayload(Card card, int amount, String contents) {
+    String convertToRequestPayload(CreditCard card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 
         try {
@@ -57,7 +41,7 @@ public class InterbankPayloadConverter {
         transaction.put("command", InterbankConfigs.PAY_COMMAND);
         transaction.put("transactionContent", contents);
         transaction.put("amount", amount);
-        transaction.put("createdAt", DateController.getToday());
+        transaction.put("createdAt", getToday());
 
         Map<String, Object> requestMap = new MyMap();
         requestMap.put("version", InterbankConfigs.VERSION);
@@ -92,21 +76,21 @@ public class InterbankPayloadConverter {
                 (String) transaction.get("createdAt"));
 
         switch (trans.getErrorCode()) {
-            case Success:
+            case "00":
                 break;
-            case InvalidCard:
+            case "01":
                 throw new InvalidCardException();
-            case NotEnoughBalance:
+            case "02":
                 throw new NotEnoughBalanceException();
-            case InternalServerError:
+            case "03":
                 throw new InternalServerErrorException();
-            case SuspiciousTransaction:
+            case "04":
                 throw new SuspiciousTransactionException();
-            case NotEnoughTransactionInfo :
+            case "05":
                 throw new NotEnoughTransactionInfoException();
-            case InvalidVersion:
+            case "06":
                 throw new InvalidVersionException();
-            case InvalidTransactionAmount:
+            case "07":
                 throw new InvalidTransactionAmountException();
             default:
                 throw new UnrecognizedException();
@@ -130,13 +114,16 @@ public class InterbankPayloadConverter {
         }
         return response;
     }
-    //coincidental cohesion vi ham getToday khong can dung chung du lieu voi cac phuong thuc khac trong class.
-    //co the tach ra class khac roi goi den
+
     /**
      * Return a {@link String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *
      * @author hieudm
      * @return the current time as {@link String String}.
      */
-
+    private String getToday() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }
