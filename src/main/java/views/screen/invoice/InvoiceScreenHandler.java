@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 public class InvoiceScreenHandler extends BaseScreenHandler {
 
+//Vi pham coincidental cohesion: Cac method trong class nay ko lien quan gi den nhau nhung lai glam cho class nay qua cong kenh va phuc tap
 	private static Logger LOGGER = Utils.getLogger(InvoiceScreenHandler.class.getName());
 
 	@FXML
@@ -71,6 +72,9 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 	}
 
 	protected void setupData(Object dto) throws Exception {
+		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+		//lai cac phuong thuc setup do
 		this.invoice = (Invoice) dto;
 		Order order = invoice.getOrder();
 		DeliveryInfo deliveryInfo = order.getDeliveryInfo();

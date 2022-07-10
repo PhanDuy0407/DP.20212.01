@@ -8,8 +8,10 @@ import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
 import entity.cart.Cart;
+import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
+import helper.Validate;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
@@ -17,7 +19,7 @@ import subsystem.InterbankSubsystem;
 /**
  * This {@code PaymentController} class control the flow of the payment process
  * in our AIMS Software.
- * 
+ *
  * @author hieud
  *
  */
@@ -28,10 +30,15 @@ import subsystem.InterbankSubsystem;
 */
 public class PaymentController extends BaseController {
 
+	private SimpleCardFactory cardFactory = new SimpleCardFactory();
+	//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
+	//nhung 2 method nay ko su dung du lieu cua nhau nen co the tach 2 class rieng biet
+
+
 	/**
 	 * Represent the card used for payment
 	 */
-	private CreditCard card;
+	private Card card;
 
 	/**
 	 * Represent the Interbank subsystem
@@ -42,16 +49,18 @@ public class PaymentController extends BaseController {
 	 * Validate the input date which should be in the format "mm/yy", and then
 	 * return a {@link String String} representing the date in the
 	 * required format "mmyy" .
-	 * 
+	 *
 	 * @param date - the {@link String String} represents the input date
 	 * @return {@link String String} - date representation of the required
 	 *         format
 	 * @throws InvalidCardException - if the string does not represent a valid date
 	 *                              in the expected format
 	 */
-	private String getExpirationDate(String date) throws InvalidCardException {
+	private String getExpirationDate(String date) throws InvalidCardException
+	{
 		String[] strs = date.split("/");
-		if (strs.length != 2) {
+		if (strs.length != 2)
+		{
 			throw new InvalidCardException();
 		}
 
@@ -59,24 +68,39 @@ public class PaymentController extends BaseController {
 		int month = -1;
 		int year = -1;
 
-		try {
+		try
+		{
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
-			if (month < 1 || month > 12 || year < Calendar.getInstance().get(Calendar.YEAR) % 100 || year > 100) {
+			/**
+			 * author: Ducanh
+			 * Clean code: tạo 1 level of abstraction bằng chuyển logic valid tháng năm thành method 
+			 */
+			if (isValidTimeOrder(month, year))
+			{
 				throw new InvalidCardException();
 			}
 			expirationDate = strs[0] + strs[1];
 
-		} catch (Exception ex) {
+		}
+		catch (Exception ex)
+		{
 			throw new InvalidCardException();
 		}
 
 		return expirationDate;
 	}
 
+	private boolean isValidTimeOrder(int month, int year)
+	{
+		Validate validate = Validate.getInstance();
+		boolean isValid = validate.validateTimeOrder(month, year);
+		return isValid;
+	}
+
 	/**
 	 * Pay order, and then return the result with a message.
-	 * 
+	 *
 	 * @param amount         - the amount to pay
 	 * @param contents       - the transaction contents
 	 * @param cardNumber     - the card number
@@ -87,22 +111,32 @@ public class PaymentController extends BaseController {
 	 *         message.
 	 */
 	public Map<String, String> payOrder(int amount, String contents, String cardNumber, String cardHolderName,
-			String expirationDate, String securityCode) {
+			String expirationDate, String securityCode)
+	{
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
-		try {
-			this.card = new CreditCard(
-					cardNumber,
-					cardHolderName,
-					getExpirationDate(expirationDate),
-					Integer.parseInt(securityCode));
+		try
+		{
+			expirationDate = getExpirationDate(expirationDate);
+		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi 
 
+//			this.card = new CreditCard(
+//					cardNumber,
+//					cardHolderName,
+//					getExpirationDate(expirationDate),
+//					Integer.parseInt(securityCode));
+			this.card = cardFactory.createCard("CreditCard", cardNumber,
+					cardHolderName,
+					expirationDate,
+					securityCode);
 			this.interbank = new InterbankSubsystem();
 			PaymentTransaction transaction = interbank.payOrder(card, amount, contents);
 
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");
 			result.put("MESSAGE", "You have successfully paid the order!");
-		} catch (PaymentException | UnrecognizedException ex) {
+		}
+		catch (PaymentException | UnrecognizedException ex)
+		{
 			result.put("MESSAGE", ex.getMessage());
 		}
 		return result;

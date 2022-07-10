@@ -10,8 +10,6 @@ import dao.media.MediaDAO;
  * @author nguyenlm
  */
 public class HomeController extends BaseController {
-
-
     /**
      * this method gets all Media in DB and return back to home to display
      * @return List[Media]

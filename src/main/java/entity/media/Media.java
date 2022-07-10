@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author nguyenlm
  */
 public class Media {
-
+////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     private static Logger LOGGER = Utils.getLogger(Media.class.getName());
 
     protected Statement stm;
@@ -53,7 +53,7 @@ public class Media {
         return updated_quantity;
     }
 
-    // getter and setter 
+    // getter and setter
     public int getId() {
         return this.id;
     }

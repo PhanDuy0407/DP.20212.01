@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
 import common.exception.PlaceOrderException;
+import common.interfaces.Observable;
+import common.interfaces.Observer;
 import controller.PlaceOrderController;
 import controller.ViewCartController;
 import entity.cart.CartItem;
@@ -26,7 +28,7 @@ import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
 import views.screen.shipping.ShippingScreenHandler;
 
-public class CartScreenHandler extends BaseScreenHandler {
+public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	private static Logger LOGGER = Utils.getLogger(CartScreenHandler.class.getName());
 
 	@FXML
@@ -67,6 +69,10 @@ public class CartScreenHandler extends BaseScreenHandler {
 	}
 
 	protected void setupFunctionality() throws Exception {
+		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+		//lai cac phuong thuc setup do
+
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");
 		Image im = new Image(file.toURI().toString());
@@ -91,14 +97,14 @@ public class CartScreenHandler extends BaseScreenHandler {
 		});
 	}
 
-	public ViewCartController getBController(){
-		return (ViewCartController) super.getBController();
+	public ViewCartController getBaseController(){
+		return (ViewCartController) super.getBaseController();
 	}
 
 	public void requestToViewCart(BaseScreenHandler prevScreen) throws SQLException {
 		setPreviousScreen(prevScreen);
 		setScreenTitle("Cart Screen");
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 		show();
 	}
@@ -113,7 +119,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 			}
 
 			placeOrderController.placeOrder();
-			
+
 			// display available media
 			displayCartWithMediaAvailability();
 
@@ -136,13 +142,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 	}
 
 	public void updateCart() throws SQLException{
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 	}
 
 	void updateCartAmount(){
 		// calculate subtotal and amount
-		int subtotal = getBController().getCartSubtotal();
+		int subtotal = getBaseController().getCartSubtotal();
 		int vat = (int)((ViewsConfig.PERCENT_VAT/100)*subtotal);
 		int amount = subtotal + vat;
 		LOGGER.info("amount" + amount);
@@ -152,13 +158,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 		labelVAT.setText(ViewsConfig.getCurrencyFormat(vat));
 		labelAmount.setText(ViewsConfig.getCurrencyFormat(amount));
 	}
-	
+
 	private void displayCartWithMediaAvailability(){
 		// clear all old cartMedia
 		vboxCart.getChildren().clear();
 
 		// get list media of cart after check availability
-		List lstMedia = getBController().getListCartMedia();
+		List<?> lstMedia = getBaseController().getListCartMedia();
 
 		try {
 			for (Object cm : lstMedia) {
@@ -175,6 +181,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 			updateCartAmount();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void update(Observable observable) {
+		if (observable instanceof MediaHandler) {
+			// TODO Update Value, anything of Cart in here
 		}
 	}
 }
