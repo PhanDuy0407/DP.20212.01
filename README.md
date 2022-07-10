@@ -3,12 +3,19 @@
   <img src="assets/images/aims_cover_image.png" />
 </p>
 
-## Getting Started
+| stt | Họ và tên             | MSSV     |
+| --- | --------------------- | -------- |
+| 1   | Nguyễn Đức Anh        | 20172956 |
+| 2   | Lê Xuân An            | 20172931 |
+| 3   | Nguyễn Đình Quang Anh | 20172936 |
+| 4   | Nguyễn Mạnh Cường     | 20172989 |
 
-Welcome to the AIMS project. Here is a guideline to help you get started.
+## Contribution
 
-## Folder Structure
+Được đặt trong file Contribution của nhóm
+## Link drive của nhóm
 
+<<<<<<< HEAD
 The workspace contains the following folders, where:
 
 - `src`: the folder to maintain sources
@@ -43,3 +50,9 @@ Click on `Run` -> `Run Configurations...`  -> `Java Application`, create a new l
 - nguyenlm - Software Engeneering Student - k61
 - manhvd   - Software Engeneering Student - k61
 - hieudm   - ICT - k61
+<<<<<<< HEAD
+=======
+=======
+[Link Drive: Báo cáo, Presetation, Video](https://drive.google.com/drive/folders/1H57cviWPkO1iKE4HnHHfr72_k01Mm1Pj)
+>>>>>>> solid/subteam2
+>>>>>>> solid/merged

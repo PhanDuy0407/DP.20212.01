@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
 import common.exception.PlaceOrderException;
+import common.interfaces.Observable;
+import common.interfaces.Observer;
 import controller.PlaceOrderController;
 import controller.ViewCartController;
 import entity.cart.CartItem;
@@ -26,7 +28,7 @@ import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
 import views.screen.shipping.ShippingScreenHandler;
 
-public class CartScreenHandler extends BaseScreenHandler {
+public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	private static Logger LOGGER = Utils.getLogger(CartScreenHandler.class.getName());
 
 	@FXML
@@ -94,14 +96,14 @@ public class CartScreenHandler extends BaseScreenHandler {
 		});
 	}
 
-	public ViewCartController getBController(){
-		return (ViewCartController) super.getBController();
+	public ViewCartController getBaseController(){
+		return (ViewCartController) super.getBaseController();
 	}
 
 	public void requestToViewCart(BaseScreenHandler prevScreen) throws SQLException {
 		setPreviousScreen(prevScreen);
 		setScreenTitle("Cart Screen");
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 		show();
 	}
@@ -139,13 +141,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 	}
 
 	public void updateCart() throws SQLException{
-		getBController().checkAvailabilityOfProduct();
+		getBaseController().checkAvailabilityOfProduct();
 		displayCartWithMediaAvailability();
 	}
 
 	void updateCartAmount(){
 		// calculate subtotal and amount
-		int subtotal = getBController().getCartSubtotal();
+		int subtotal = getBaseController().getCartSubtotal();
 		int vat = (int)((ViewsConfig.PERCENT_VAT/100)*subtotal);
 		int amount = subtotal + vat;
 		LOGGER.info("amount" + amount);
@@ -161,7 +163,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		vboxCart.getChildren().clear();
 
 		// get list media of cart after check availability
-		List lstMedia = getBController().getListCartMedia();
+		List<?> lstMedia = getBaseController().getListCartMedia();
 
 		try {
 			for (Object cm : lstMedia) {
@@ -178,6 +180,13 @@ public class CartScreenHandler extends BaseScreenHandler {
 			updateCartAmount();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void update(Observable observable) {
+		if (observable instanceof MediaHandler) {
+			// TODO Update Value, anything of Cart in here
 		}
 	}
 }

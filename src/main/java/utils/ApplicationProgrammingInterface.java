@@ -36,7 +36,7 @@ public class ApplicationProgrammingInterface {
 		conn.setRequestProperty("Authorization", "Bearer " + token);
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
-		StringBuilder respone = new StringBuilder(); // ising StringBuilder for the sake of memory and performance
+		StringBuilder respone = new StringBuilder(); // using StringBuilder for the sake of memory and performance
 		while ((inputLine = in.readLine()) != null)
 			System.out.println(inputLine);
 		respone.append(inputLine + "\n");
@@ -62,7 +62,9 @@ public class ApplicationProgrammingInterface {
 		if (conn.getResponseCode() / 100 == 2)
 		{
 			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		} else {
+		}
+		else
+		{
 			in = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 		}
 		StringBuilder response = new StringBuilder();

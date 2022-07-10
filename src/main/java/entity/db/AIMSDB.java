@@ -14,6 +14,13 @@ import utils.*;
 */
 public class AIMSDB {
 
+    /**
+     * Clean code: Thay đổi các giá trị string bằng hằng số
+     */
+
+    private static final String NAME_JDBC = "org.sqlite.JDBC";
+    private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/assets/db/aims.db";
+
 	private static Logger LOGGER = Utils.getLogger(Connection.class.getName());
 	private static Connection connect;
     // TODO: refactor Utils -> limit connections
@@ -21,8 +28,8 @@ public class AIMSDB {
     public static Connection getConnection() {
         if (connect != null) return connect;
         try {
-			Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:src/main/resources/assets/db/aims.db";
+			Class.forName(NAME_JDBC);
+            String url = DATABASE_URL;
             connect = DriverManager.getConnection(url);
             LOGGER.info("Connect database successfully");
         } catch (Exception e) {
