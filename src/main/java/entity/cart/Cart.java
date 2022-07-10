@@ -12,9 +12,17 @@ public class Cart {
     // Content coupling: CartItem chưa
     private List<CartItem> lstCartItem;
 
-    public Cart() {
+    private Cart() {
         lstCartItem = new ArrayList<>();
     }
+
+    public static Cart getInstance(){
+        if(null == cart){
+            cart = new Cart();
+        }
+        return cart;
+    }
+
 
     public void addCartMedia(CartItem cm){
         lstCartItem.add(cm);
