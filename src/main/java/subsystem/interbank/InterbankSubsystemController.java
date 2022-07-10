@@ -11,7 +11,8 @@ import entity.payment.PaymentTransaction;
 	and pay oder when the user wants by the item
 	payorder are made before refunds
 */
-public class InterbankSubsystemController {
+public class InterbankSubsystemController
+{
 
 	private static InterbankPayloadConverter interbankPayloadConverter = InterbankPayloadConverter.getInstance();
 	private static InterbankBoundary interbankBoundary = new InterbankBoundary();
@@ -22,7 +23,8 @@ public class InterbankSubsystemController {
 		return null;
 	}
 
-	public PaymentTransaction payOrder(Card card, int amount, String contents) {
+	public PaymentTransaction payOrder(Card card, int amount, String contents)
+	{
 		String requestPayload = interbankPayloadConverter.convertToRequestPayload(card, amount, contents);
 		String responseText = interbankBoundary.query(InterbankConfigs.PROCESS_TRANSACTION_URL, requestPayload);
 		return interbankPayloadConverter.extractPaymentTransaction(responseText);

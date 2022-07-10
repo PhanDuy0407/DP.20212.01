@@ -27,7 +27,8 @@ public class ApplicationProgrammingInterface {
 	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = Utils.getLogger(Utils.class.getName());
 
-	public static String get(String url, String token) throws Exception {
+	public static String get(String url, String token) throws Exception
+	{
 		LOGGER.info("Request URL: " + url + "\n");
 		HttpURLConnection conn = setupConnection(url);
 
@@ -44,7 +45,8 @@ public class ApplicationProgrammingInterface {
 		return respone.substring(0, respone.length() - 1).toString();
 	}
 
-	public static String post(String url, String data) throws IOException {
+	public static String post(String url, String data) throws IOException
+	{
 		//coincidental cohesion vi trong phuong thuc vua tao ket noi vua thao tac voi du lieu
 		allowMethods("PATCH");
 		HttpURLConnection conn = setupConnection(url);
@@ -57,7 +59,8 @@ public class ApplicationProgrammingInterface {
 		writer.close();
 		BufferedReader in;
 		String inputLine;
-		if (conn.getResponseCode() / 100 == 2) {
+		if (conn.getResponseCode() / 100 == 2)
+		{
 			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		} else {
 			in = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
@@ -70,7 +73,8 @@ public class ApplicationProgrammingInterface {
 		return response.toString();
 	}
 
-	private static HttpURLConnection setupConnection(String url) throws IOException {
+	private static HttpURLConnection setupConnection(String url) throws IOException
+	{
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
@@ -78,8 +82,10 @@ public class ApplicationProgrammingInterface {
 		return conn;
 	}
 
-	private static void allowMethods(String... methods) {
-		try {
+	private static void allowMethods(String... methods)
+	{
+		try
+		{
 			Field methodsField = HttpURLConnection.class.getDeclaredField("methods");
 			methodsField.setAccessible(true);
 
@@ -93,7 +99,9 @@ public class ApplicationProgrammingInterface {
 			String[] newMethods = methodsSet.toArray(new String[0]);
 
 			methodsField.set(null/* static field */, newMethods);
-		} catch (NoSuchFieldException | IllegalAccessException e) {
+		}
+		catch (NoSuchFieldException | IllegalAccessException e)
+		{
 			throw new IllegalStateException(e);
 		}
 	}
