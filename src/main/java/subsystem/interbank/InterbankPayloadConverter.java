@@ -22,6 +22,13 @@ public class InterbankPayloadConverter {
      * @param contents
      * @return
      */
+    private static InterbankPayloadConverter instance;
+    public synchronized static InterbankPayloadConverter getInstance(){
+        if (instance == null){
+            instance = new InterbankPayloadConverter();
+        }
+        return instance;
+    }
     String convertToRequestPayload(CreditCard card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 
@@ -107,7 +114,8 @@ public class InterbankPayloadConverter {
         }
         return response;
     }
-
+    //coincidental cohesion vi ham getToday khong can dung chung du lieu voi cac phuong thuc khac trong class.
+    //co the tach ra class khac roi goi den
     /**
      * Return a {@link String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *

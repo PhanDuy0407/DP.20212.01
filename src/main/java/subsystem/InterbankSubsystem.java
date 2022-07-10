@@ -13,6 +13,8 @@ import subsystem.interbank.InterbankSubsystemController;
  */
 public class InterbankSubsystem implements InterbankInterface {
 
+//Vi pham nguyen tac logical cohesion: Cac method duoi day deu lien quan den nghiep vu ngan hang
+//nhung chung ko su dung du lieu gi cua nhau nen co the di chuyen moi method sang cho class khac implements InterbankInterface
 	/**
 	 * Represent the controller of the subsystem
 	 */

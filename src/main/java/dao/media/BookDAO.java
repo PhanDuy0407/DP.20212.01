@@ -13,7 +13,7 @@ import java.util.Date;
  * @author
  */
 public class BookDAO extends MediaDAO {
-
+    //Coincidental cohesion vi co the tach ra thanh 2 phuong thuc truy van du lieu, xu li du lieu roi goi den 2 phuong thuc do
     @Override
     public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM "+  //Vi pham nguyen tac Common Coupling: Viec truy van tu 1 DB chung can duoc thuc hien tai 1 function chuyen biet (MediaDAO)
@@ -24,7 +24,6 @@ public class BookDAO extends MediaDAO {
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if(res.next()) {
-
             // from Media table
             String title = "";
             String type = res.getString("type");

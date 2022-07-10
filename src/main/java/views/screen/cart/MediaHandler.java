@@ -59,13 +59,11 @@ public class MediaHandler extends FXMLScreenHandler {
 	private CartItem cartItem;
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
-
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
 		hboxMedia.setAlignment(Pos.CENTER);
 	}
-	
 	public void setCartItem(CartItem cartItem) {
 		this.cartItem = cartItem;
 		setMediaInfo();
