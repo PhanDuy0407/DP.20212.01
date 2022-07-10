@@ -76,11 +76,19 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 		final BooleanProperty firstTime = new SimpleBooleanProperty(true); // Variable to store the focus on stage load
 		name.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
 			if(newValue && firstTime.get()){
-				content.requestFocus(); // Delegate the focus to container
-				firstTime.setValue(false); // Variable value changed for future references
+				DelegateTheForCusToContainer();
+				VariableValueChangedForFutureReferences(firstTime);
 			}
 		});
 
+	}
+
+	private void VariableValueChangedForFutureReferences(BooleanProperty firstTime) {
+		firstTime.setValue(false);
+	}
+
+	private void DelegateTheForCusToContainer() {
+		content.requestFocus();
 	}
 
 	@FXML
@@ -88,8 +96,18 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 
 		// validate delivery info and prepare order info
 		preprocessDeliveryInfo();
-		
-		// create invoice screen
+
+//		Invoice invoice = getBController().createInvoice(order);
+//		BaseScreenHandler InvoiceScreenHandler = new InvoiceScreenHandler(this.stage, ViewsConfig.INVOICE_SCREEN_PATH, invoice);
+//		InvoiceScreenHandler.setPreviousScreen(this);
+//		InvoiceScreenHandler.setHomeScreenHandler(homeScreenHandler);
+//		InvoiceScreenHandler.setScreenTitle("Invoice Screen");
+//		InvoiceScreenHandler.setBController(getBController());
+//		InvoiceScreenHandler.show();
+		CreateInvoiceScreen();
+	}
+
+	private void CreateInvoiceScreen() throws IOException {
 		Invoice invoice = getBController().createInvoice(order);
 		BaseScreenHandler InvoiceScreenHandler = new InvoiceScreenHandler(this.stage, ViewsConfig.INVOICE_SCREEN_PATH, invoice);
 		InvoiceScreenHandler.setPreviousScreen(this);

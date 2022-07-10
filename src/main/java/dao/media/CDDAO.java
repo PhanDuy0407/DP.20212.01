@@ -12,7 +12,8 @@ import java.util.Date;
  * @author
  */
 public class CDDAO extends MediaDAO {
-
+    //Coincidental cohesion vi co the tach ra thanh 2 phuong thuc truy van du lieu, xu li du lieu roi goi den 2 phuong thuc do
+    //cac class DAO deu ke thua class MediaDAO thi nen tao cac phuong thuc o MediaDAO roi override
     @Override
     public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM "+
@@ -20,7 +21,7 @@ public class CDDAO extends MediaDAO {
                 "INNER JOIN aims.Media " +
                 "ON Media.id = CD.id " +
                 "where Media.id = " + id + ";";
-
+//Vi pham nguyen tac Common Coupling: Viec truy van tu 1 DB chung can duoc thuc hien tai 1 function chuyen biet (MediaDAO)
         ResultSet res = AIMSDB.getConnection().createStatement().executeQuery(sql);
         if(res.next()) {
 

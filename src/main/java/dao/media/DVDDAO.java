@@ -20,6 +20,7 @@ public class DVDDAO extends MediaDAO {
                 "INNER JOIN aims.Media " +
                 "ON Media.id = DVD.id " +
                 "where Media.id = " + id + ";";
+                //Vi pham nguyen tac Common Coupling: Viec truy van tu 1 DB chung can duoc thuc hien tai 1 function chuyen biet (MediaDAO)
         ResultSet res = AIMSDB.getConnection().createStatement().executeQuery(sql);
         if(res.next()) {
 

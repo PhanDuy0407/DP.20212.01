@@ -13,6 +13,10 @@ import java.util.logging.Logger;
 /**
  * @author nguyenlm Contains helper functions
  */
+/*
+	Logical Cohesion, utils Class have 1 method, but in future class grows up.
+	Should change the name of the class 
+*/
 public class Utils {
 
 	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

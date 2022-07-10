@@ -18,6 +18,8 @@ import views.screen.popup.PopupScreen;
 
 public class ResultScreenHandler extends BaseScreenHandler {
 
+//Vi pham nguyen ly logic cohesion: cac thao tac setUp chi lien quan logic den nhau chu ko chia se du lieu
+//cho nhau nen co the implement tu 1 interface setUp
 	private static final Logger LOGGER = Utils.getLogger(PaymentScreenHandler.class.getName());
 
 	private String result;
