@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class MediaDAO {
 
+    //Vi pham nguyen tac Logical Cohesion: getAllMedia va getMediaById cung logic la lay thong tin ve media nhung 2 method
+    //nay ko su dung du lieu cua nhau nen co the tach ra 2 class khac nhau
     public List getAllMedia() throws SQLException {
         Statement stm = AIMSDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery("select * from Media");

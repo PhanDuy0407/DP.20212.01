@@ -5,9 +5,12 @@ package entity.shipping;
  */
 public class ShippingConfigs {
     // Common Coupling: sử dụng biến static và có thể truy cập public
+<<<<<<< HEAD
     public static final int PROVINCE_A = 22;
     public static final int PROVINCE_B = 48;
 
+=======
+>>>>>>> 9252411cba2ef6e236b0bbaaf4b5fb41b8514b4b
     public static String[] PROVINCES = {
             "Bắc Giang", 	"Bắc Kạn", 			"Cao Bằng", 	"Hà Giang", 	"Lạng Sơn", 	"Phú Thọ",
             "Quảng Ninh", 	"Thái Nguyên", 		"Tuyên Quang", 	"Yên Bái", 		"Điện Biên", 	"Hòa Bình",

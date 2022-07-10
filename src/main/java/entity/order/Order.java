@@ -13,8 +13,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+<<<<<<< HEAD
 import common.interfaces.State;
 
+=======
+>>>>>>> 9252411cba2ef6e236b0bbaaf4b5fb41b8514b4b
 
 public class Order {
 

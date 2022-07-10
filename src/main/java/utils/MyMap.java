@@ -163,7 +163,8 @@ public class MyMap extends LinkedHashMap<String, Object> {
 				sb.append(str.subSequence(i, i + offset));
 
 				i += offset;
-				offset = 0;
+				offset = 0;	//Vi pham nguyen tac logic cohesion vi set gia tri cua bien = 0 dan den lenh
+				//sb.append(str.subSequence(i, i + offset)) o phia duoi khong co tac dung gi
 
 				// check colon
 				sb.append(str.charAt(i));

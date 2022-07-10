@@ -12,7 +12,8 @@ import java.util.Date;
  * @author
  */
 public class CDDAO extends MediaDAO {
-
+    //Coincidental cohesion vi co the tach ra thanh 2 phuong thuc truy van du lieu, xu li du lieu roi goi den 2 phuong thuc do
+    //cac class DAO deu ke thua class MediaDAO thi nen tao cac phuong thuc o MediaDAO roi override
     @Override
     public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM "+

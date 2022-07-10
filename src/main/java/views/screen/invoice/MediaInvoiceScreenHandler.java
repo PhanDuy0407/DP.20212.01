@@ -39,7 +39,6 @@ public class MediaInvoiceScreenHandler extends FXMLScreenHandler{
     private Label price;
 
     private OrderItem orderItem;
-
     public MediaInvoiceScreenHandler(String screenPath) throws IOException{
         super(screenPath);
     }
