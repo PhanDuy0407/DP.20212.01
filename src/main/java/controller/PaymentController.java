@@ -24,7 +24,6 @@ import subsystem.InterbankSubsystem;
  */
 
 /*
-	Ducanh
 	Coincidental cohesion
 	method getExpirationDate is incidental to another method
 */
