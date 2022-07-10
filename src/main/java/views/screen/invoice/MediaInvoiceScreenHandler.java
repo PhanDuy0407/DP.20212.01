@@ -39,7 +39,6 @@ public class MediaInvoiceScreenHandler extends FXMLScreenHandler{
     private Label price;
 
     private OrderItem orderItem;
-
     public MediaInvoiceScreenHandler(String screenPath) throws IOException{
         super(screenPath);
     }
@@ -50,6 +49,9 @@ public class MediaInvoiceScreenHandler extends FXMLScreenHandler{
     }
 
     public void setMediaInfo() throws SQLException{
+        //Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
+        //tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
+        //lai cac phuong thuc setup do
         title.setText(orderItem.getMedia().getTitle());
         price.setText(ViewsConfig.getCurrencyFormat(orderItem.getPrice()));
         numOfProd.setText(String.valueOf(orderItem.getQuantity()));

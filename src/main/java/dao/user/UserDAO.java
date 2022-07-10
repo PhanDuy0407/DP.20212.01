@@ -13,6 +13,7 @@ import java.util.Date;
  * @author
  */
 public class UserDAO {
+                //Vi pham nguyen tac Common Coupling: Viec truy van tu 1 DB chung can duoc thuc hien tai 1 function chuyen biet (MediaDAO)
 
     public User authenticate(String email, String encryptedPassword) throws SQLException {
         String sql = "SELECT * FROM User " +
