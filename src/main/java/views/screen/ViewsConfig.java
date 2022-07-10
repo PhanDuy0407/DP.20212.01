@@ -11,7 +11,6 @@ import java.util.Locale;
  * @author
  */
 public class ViewsConfig {
-
     // static resource
     public static final String IMAGE_PATH = "src/main/resources/assets/images";
     public static final String INVOICE_SCREEN_PATH = "/views/fxml/invoice.fxml";
@@ -26,11 +25,14 @@ public class ViewsConfig {
     public static final String HOME_PATH  = "/views/fxml/home.fxml";
     public static final String HOME_MEDIA_PATH = "/views/fxml/media_home.fxml";
     public static final String POPUP_PATH = "/views/fxml/popup.fxml";
+    //common coupling
 
     public static float PERCENT_VAT = 10;
+    //common coupling
 
     public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
-
+    //common coupling
+    //control coupling
     public static String getCurrencyFormat(int num) {
         Locale vietnam = new Locale("vi", "VN");
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);

@@ -16,7 +16,7 @@ public class BookDAO extends MediaDAO {
 
     @Override
     public Media getMediaById(int id) throws SQLException {
-        String sql = "SELECT * FROM "+
+        String sql = "SELECT * FROM "+  //Vi pham nguyen tac Common Coupling: Viec truy van tu 1 DB chung can duoc thuc hien tai 1 function chuyen biet (MediaDAO)
                 "aims.Book " +
                 "INNER JOIN aims.Media " +
                 "ON Media.id = Book.id " +

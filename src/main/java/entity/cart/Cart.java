@@ -9,6 +9,7 @@ import entity.media.Media;
 
 public class Cart {
     
+    // Content coupling: CartItem chưa
     private List<CartItem> lstCartItem;
 
     public Cart() {
