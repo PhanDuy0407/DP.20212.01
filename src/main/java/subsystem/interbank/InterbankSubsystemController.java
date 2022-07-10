@@ -6,7 +6,6 @@ import entity.payment.PaymentTransaction;
 
 
 /*
-	Duc anh
 	procedural cohesion
 	refund when the user wants to return the item
 	and pay oder when the user wants by the item

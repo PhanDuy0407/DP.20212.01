@@ -21,7 +21,6 @@ import java.util.Objects;
  */
 
 /*
-    ducanh
     Temporal Cohesion: 3 is checking, or using when login, md5 is not related in Authentication
     SRP: Because getMainUser not realated other method 
     

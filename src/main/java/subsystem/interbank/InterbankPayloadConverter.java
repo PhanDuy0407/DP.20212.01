@@ -25,7 +25,6 @@ public class InterbankPayloadConverter {
      */
 
     /**
-     * author: Duc Anh
      * Clean code: Chuyển các mã code thành hằng số 
      */
     private static final String Success = "00";
