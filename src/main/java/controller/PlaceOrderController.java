@@ -21,8 +21,12 @@ import java.util.regex.Pattern;
  * This class controls the flow of place order usecase in our AIMS project
  * @author nguyenlm
  */
+ //SOLID: Vi pham nguyen tac Single responsibility principle: 1 class ma phuc vu qua nhieu chuc nang: nen tach thanh cac class
+ //khac nhau cho cac validation khac nhau
 public class PlaceOrderController extends BaseController {
 
+//Vi pham nguyen tac temproral cohesion: validatePhoneNumber, validateName, validateAddress nen duoc implement tu 1 interface
+//Validate duy nhat
     /**
      * Just for logging purpose
      */

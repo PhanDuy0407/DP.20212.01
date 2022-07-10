@@ -1,6 +1,7 @@
 package subsystem.interbank;
 
 import common.exception.*;
+import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
 import utils.MyMap;
@@ -114,7 +115,8 @@ public class InterbankPayloadConverter {
         }
         return response;
     }
-
+    //coincidental cohesion vi ham getToday khong can dung chung du lieu voi cac phuong thuc khac trong class.
+    //co the tach ra class khac roi goi den
     /**
      * Return a {@link String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *

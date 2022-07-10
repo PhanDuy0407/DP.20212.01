@@ -158,7 +158,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 		vboxCart.getChildren().clear();
 
 		// get list media of cart after check availability
-		List lstMedia = getBController().getListCartMedia();
+		List<?> lstMedia = getBController().getListCartMedia();
 
 		try {
 			for (Object cm : lstMedia) {

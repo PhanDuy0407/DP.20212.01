@@ -2,13 +2,10 @@ package views.screen.home;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import common.exception.MediaNotAvailableException;
@@ -20,7 +17,6 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,6 +64,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     private List homeItems;
     private AuthenticationController authenticationController;
+
+//Tat ca cac method khac trong class nay ko su dung den method HomeScreenHandler, getNumediaCartLabel,
+//show, redirectLogin,... nen co the tach ra 1 class khac de tranh vi pham logical cohession
+//Vi class nay da co qua nhieu method ko lien quan gi den nhau
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {

@@ -8,7 +8,7 @@ import org.example.DistanceCalculator;
     thành tiền, tính phí có nhiều cách, hoặc sử dụng nhiều lib khác
 */
 public class DeliveryInfo {
-
+    ////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     protected String name;
     protected String phone;
     protected String province;

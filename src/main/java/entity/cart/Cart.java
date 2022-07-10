@@ -8,9 +8,8 @@ import common.exception.MediaNotAvailableException;
 import entity.media.Media;
 
 public class Cart {
-
     private static Cart instance;
-
+    //Vi pham implement singleton: Declare a single private static instance of the class: chi co 1 gio hang nen cart phai la static
     // Content coupling: CartItem chưa
     private List<CartItem> lstCartItem = new ArrayList<>();
 

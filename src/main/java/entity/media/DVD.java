@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DVD extends Media {
-
+////Vi pham implement singleton: tat ca cac thuoc tinh phai de o access modifier private
     String discType;
     String director;
     int runtime;
@@ -15,7 +15,7 @@ public class DVD extends Media {
     Date releasedDate;
     String filmType;
 
-    public DVD() throws SQLException{
+    public DVD() throws SQLException{//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
 
     }
 

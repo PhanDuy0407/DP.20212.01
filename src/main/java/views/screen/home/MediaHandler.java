@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import common.exception.MediaNotAvailableException;
 import common.interfaces.Observable;
 import common.interfaces.Observer;
-import entity.cart.Cart;
-import entity.cart.CartItem;
 import entity.media.Media;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +20,6 @@ import javafx.scene.image.ImageView;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
-import views.screen.popup.PopupScreen;
 public class MediaHandler extends FXMLScreenHandler implements Observable {
 
     @FXML
