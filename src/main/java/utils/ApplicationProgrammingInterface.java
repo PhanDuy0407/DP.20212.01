@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 
 /*
+	Duc anh
 	procedural cohesion
 	get, and post is done sequentially
 */
@@ -45,8 +46,7 @@ public class ApplicationProgrammingInterface {
 		return respone.substring(0, respone.length() - 1).toString();
 	}
 
-	public static String post(String url, String data) throws IOException
-	{
+	public static String post(String url, String data) throws IOException {
 		//coincidental cohesion vi trong phuong thuc vua tao ket noi vua thao tac voi du lieu
 		allowMethods("PATCH");
 		HttpURLConnection conn = setupConnection(url);

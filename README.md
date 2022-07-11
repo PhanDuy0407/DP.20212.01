@@ -51,8 +51,11 @@ Click on `Run` -> `Run Configurations...`  -> `Java Application`, create a new l
 - manhvd   - Software Engeneering Student - k61
 - hieudm   - ICT - k61
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 [Link Drive: Báo cáo, Presetation, Video](https://drive.google.com/drive/folders/1H57cviWPkO1iKE4HnHHfr72_k01Mm1Pj)
 >>>>>>> solid/subteam2
 >>>>>>> solid/merged
+=======
+>>>>>>> cleancode/merged

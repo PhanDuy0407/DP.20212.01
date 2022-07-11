@@ -62,25 +62,13 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 	private CartItem cartItem;
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 	private List<Observer> listObserver;
->>>>>>> solid/subteam2
->>>>>>> solid/merged
+
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
 		hboxMedia.setAlignment(Pos.CENTER);
 	}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> solid/subteam2
->>>>>>> solid/merged
 	public void setCartItem(CartItem cartItem) {
 		this.cartItem = cartItem;
 		setMediaInfo();
@@ -149,8 +137,11 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 		spinnerFX.getChildren().add(this.spinner);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> cleancode/merged
 
 
 	@Override
@@ -174,4 +165,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 	}
 }
 
+<<<<<<< HEAD
 >>>>>>> solid/merged
+=======
+>>>>>>> cleancode/merged

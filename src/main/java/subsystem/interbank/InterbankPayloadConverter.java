@@ -26,6 +26,7 @@ public class InterbankPayloadConverter
      */
 
     /**
+     * author: Duc Anh
      * Clean code: Chuyển các mã code thành hằng số 
      */
     private static final String Success = "00";
@@ -39,8 +40,7 @@ public class InterbankPayloadConverter
 
     private static InterbankPayloadConverter instance;
     public synchronized static InterbankPayloadConverter getInstance(){
-        if (instance == null)
-        {
+        if (instance == null){
             instance = new InterbankPayloadConverter();
         }
         return instance;

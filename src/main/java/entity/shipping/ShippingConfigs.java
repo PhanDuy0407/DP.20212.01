@@ -5,6 +5,9 @@ package entity.shipping;
  */
 public class ShippingConfigs {
     // Common Coupling: sử dụng biến static và có thể truy cập public
+    public static final int PROVINCE_A = 22;
+    public static final int PROVINCE_B = 48;
+
     public static String[] PROVINCES = {
             "Bắc Giang", 	"Bắc Kạn", 			"Cao Bằng", 	"Hà Giang", 	"Lạng Sơn", 	"Phú Thọ",
             "Quảng Ninh", 	"Thái Nguyên", 		"Tuyên Quang", 	"Yên Bái", 		"Điện Biên", 	"Hòa Bình",
@@ -18,5 +21,5 @@ public class ShippingConfigs {
             "Hậu Giang", 	"Kiên Giang", 		"Long An", 		"Sóc Trăng", 	"Tiền Giang", 	"Trà Vinh",
             "Vĩnh Long", 	"Cần Thơ" };
 
-    public static int[] RUSH_SUPPORT_PROVINCES_INDEX = {22, 48};
+    public static int[] RUSH_SUPPORT_PROVINCES_INDEX = {PROVINCE_A, PROVINCE_B};//Clean Code: Vi pham cach dat ten bien,
 }

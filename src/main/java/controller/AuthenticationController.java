@@ -53,8 +53,7 @@ public class AuthenticationController extends BaseController {
     }
 
     public void login(String email, String password) throws Exception {
-        try
-        {
+        try {
         	Security security = Security.getInstance();
             User user = new UserDAO().authenticate(email,security.md5Encryption(password));
             if (Objects.isNull(user)) throw new FailLoginException();
@@ -80,4 +79,9 @@ public class AuthenticationController extends BaseController {
      * @param message - plain text as {@link String String}.
      * @return cipher text as {@link String String}.
      */
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> cleancode/merged
 }

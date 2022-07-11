@@ -64,16 +64,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     private List homeItems;
     private AuthenticationController authenticationController;
-<<<<<<< HEAD
-=======
 
 //Tat ca cac method khac trong class nay ko su dung den method HomeScreenHandler, getNumediaCartLabel,
 //show, redirectLogin,... nen co the tach ra 1 class khac de tranh vi pham logical cohession
 //Vi class nay da co qua nhieu method ko lien quan gi den nhau
-<<<<<<< HEAD
-=======
->>>>>>> solid/subteam2
->>>>>>> solid/merged
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {

@@ -58,7 +58,7 @@ public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	public CartScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
 		try {
-			setupFunctionality();
+			configBaseFuncionality();
 		} catch (IOException ex) {
 			LOGGER.info(ex.getMessage());
 			PopupScreen.error("Error when loading resources.");

@@ -19,16 +19,20 @@ import subsystem.InterbankSubsystem;
 /**
  * This {@code PaymentController} class control the flow of the payment process
  * in our AIMS Software.
+<<<<<<< HEAD
  *
  * @author hieud
  *
+=======
+>>>>>>> cleancode/merged
  */
 
 /*
 	Coincidental cohesion
-	method getExpirationDate is incidental to another method 
+	method getExpirationDate is incidental to another method
 */
 public class PaymentController extends BaseController {
+
 
 	private SimpleCardFactory cardFactory = new SimpleCardFactory();
 	//Vi pham nguyen tac temproral cohession: Viec kiem tra ngay het han cua the se duoc thuc hien truoc khi thanh toan
@@ -73,11 +77,9 @@ public class PaymentController extends BaseController {
 			month = Integer.parseInt(strs[0]);
 			year = Integer.parseInt(strs[1]);
 			/**
-			 * author: Ducanh
 			 * Clean code: tạo 1 level of abstraction bằng chuyển logic valid tháng năm thành method 
 			 */
-			if (isValidTimeOrder(month, year))
-			{
+			if (isValidTimeOrder(month, year)) {
 				throw new InvalidCardException();
 			}
 			expirationDate = strs[0] + strs[1];
@@ -91,8 +93,12 @@ public class PaymentController extends BaseController {
 		return expirationDate;
 	}
 
+<<<<<<< HEAD
 	private boolean isValidTimeOrder(int month, int year)
 	{
+=======
+	private boolean isValidTimeOrder(int month, int year){
+>>>>>>> cleancode/merged
 		Validate validate = Validate.getInstance();
 		boolean isValid = validate.validateTimeOrder(month, year);
 		return isValid;
@@ -115,8 +121,12 @@ public class PaymentController extends BaseController {
 	{
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
+<<<<<<< HEAD
 		try
 		{
+=======
+		try {
+>>>>>>> cleancode/merged
 			expirationDate = getExpirationDate(expirationDate);
 		    //Nen su dung Factory method o day vi co them phuong thuc thanh toan moi 
 

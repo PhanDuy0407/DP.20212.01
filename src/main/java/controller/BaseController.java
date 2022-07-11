@@ -6,10 +6,6 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.media.Media;
 
-/**
- * This class is the base controller for our AIMS project
- * @author nguyenlm
- */
 /*
     SOLID: Vi phạm nguyên lý LSP vì các class kế thừa lớp BaseController này không 
     sử dụng lại các method của lớp con

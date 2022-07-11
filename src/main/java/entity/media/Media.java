@@ -27,8 +27,8 @@ public class Media {
     protected String imageURL;
     protected boolean rushSupported;
 
-    // Content coupling: Truy cập vào trạng thái của Connect 
-    public Media() throws SQLException{
+    // Content coupling: Truy cập vào trạng thái của Connect
+    public Media() throws SQLException{//Vi pham implement singleton: phuong thuc khoi tao khong duoc dung public, phai dung getInstance
         stm = AIMSDB.getConnection().createStatement();
     }
 

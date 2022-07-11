@@ -1,5 +1,6 @@
 /target/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> solid/merged
@@ -34,6 +35,8 @@ hs_err_pid*
 =======
 
 =======
+=======
+>>>>>>> cleancode/merged
 
 /bin/
 
@@ -62,7 +65,10 @@ hs_err_pid*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
 >>>>>>> solid/merged
+=======
+>>>>>>> cleancode/merged
 
 .classpath
 .project
@@ -71,6 +77,10 @@ hs_err_pid*
 .idea/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> solid/subteam2
 >>>>>>> solid/merged
+=======
+DesignPattern/DesignPattern.asta
+>>>>>>> cleancode/merged
