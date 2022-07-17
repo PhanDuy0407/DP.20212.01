@@ -63,12 +63,12 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 	private Spinner<Integer> spinner;
 	private CartScreenHandler cartScreen;
 	private List<Observer> listObserver;
-
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
 		this.cartScreen = cartScreen;
 		hboxMedia.setAlignment(Pos.CENTER);
 	}
+
 	public void setCartItem(CartItem cartItem) {
 		this.cartItem = cartItem;
 		setMediaInfo();
@@ -136,12 +136,6 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 		spinnerFX.setAlignment(Pos.CENTER);
 		spinnerFX.getChildren().add(this.spinner);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
-=======
->>>>>>> cleancode/merged
 
 
 	@Override
@@ -165,7 +159,3 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 	}
 }
 
-<<<<<<< HEAD
->>>>>>> solid/merged
-=======
->>>>>>> cleancode/merged

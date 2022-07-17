@@ -11,14 +11,11 @@ import common.exception.InvalidDeliveryInfoException;
 
 public class Validate {
 	private static Validate single_instance = null;
-
 	// variable of type String
 	public String s;
-
 	// private constructor restricted to this class itself
 	private Validate() {
 	}
-
 	// static method to create instance of Singleton class
 	public static Validate getInstance() {
 		if (single_instance == null)

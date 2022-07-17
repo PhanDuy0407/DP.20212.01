@@ -1,6 +1,7 @@
 package subsystem.interbank;
 
 import common.exception.*;
+import controller.DateController;
 import entity.payment.Card;
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
@@ -14,8 +15,7 @@ import java.util.Map;
 /**
  * @author
  */
-public class InterbankPayloadConverter
-{
+public class InterbankPayloadConverter {
 
     /**
      * Convert from native entity into interbank required format
@@ -26,7 +26,6 @@ public class InterbankPayloadConverter
      */
 
     /**
-     * author: Duc Anh
      * Clean code: Chuyển các mã code thành hằng số 
      */
     private static final String Success = "00";
@@ -48,18 +47,16 @@ public class InterbankPayloadConverter
     String convertToRequestPayload(Card card, int amount, String contents) {
         Map<String, Object> transaction = new MyMap();
 
-        try
-        {
+        try {
             transaction.putAll(MyMap.toMyMap(card));
-        } catch (IllegalArgumentException | IllegalAccessException e)
-        {
+        } catch (IllegalArgumentException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             throw new InvalidCardException();
         }
         transaction.put("command", InterbankConfigs.PAY_COMMAND);
         transaction.put("transactionContent", contents);
         transaction.put("amount", amount);
-        transaction.put("createdAt", getToday());
+        transaction.put("createdAt", DateController.getToday());
 
         Map<String, Object> requestMap = new MyMap();
         requestMap.put("version", InterbankConfigs.VERSION);
@@ -73,8 +70,7 @@ public class InterbankPayloadConverter
      * @param responseText
      * @return
      */
-    PaymentTransaction extractPaymentTransaction(String responseText)
-    {
+    PaymentTransaction extractPaymentTransaction(String responseText) {
         MyMap response = convertJSONResponse(responseText);
 
         if (response == null)
@@ -123,15 +119,11 @@ public class InterbankPayloadConverter
      * @param responseText
      * @return
      */
-    private MyMap convertJSONResponse(String responseText)
-    {
+    private MyMap convertJSONResponse(String responseText) {
         MyMap response = null;
-        try
-        {
+        try {
             response = MyMap.toMyMap(responseText, 0);
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             throw new UnrecognizedException();
         }
@@ -145,10 +137,5 @@ public class InterbankPayloadConverter
      * @author hieudm
      * @return the current time as {@link String String}.
      */
-    private String getToday()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
+
 }

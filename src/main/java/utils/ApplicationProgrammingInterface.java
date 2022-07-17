@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 
 
 /*
-	Duc anh
 	procedural cohesion
 	get, and post is done sequentially
 */
@@ -28,8 +27,7 @@ public class ApplicationProgrammingInterface {
 	public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static Logger LOGGER = Utils.getLogger(Utils.class.getName());
 
-	public static String get(String url, String token) throws Exception
-	{
+	public static String get(String url, String token) throws Exception {
 		LOGGER.info("Request URL: " + url + "\n");
 		HttpURLConnection conn = setupConnection(url);
 
@@ -37,7 +35,7 @@ public class ApplicationProgrammingInterface {
 		conn.setRequestProperty("Authorization", "Bearer " + token);
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
-		StringBuilder respone = new StringBuilder(); // using StringBuilder for the sake of memory and performance
+		StringBuilder respone = new StringBuilder(); // ising StringBuilder for the sake of memory and performance
 		while ((inputLine = in.readLine()) != null)
 			System.out.println(inputLine);
 		respone.append(inputLine + "\n");
@@ -59,12 +57,9 @@ public class ApplicationProgrammingInterface {
 		writer.close();
 		BufferedReader in;
 		String inputLine;
-		if (conn.getResponseCode() / 100 == 2)
-		{
+		if (conn.getResponseCode() / 100 == 2) {
 			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		}
-		else
-		{
+		} else {
 			in = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 		}
 		StringBuilder response = new StringBuilder();
@@ -75,8 +70,7 @@ public class ApplicationProgrammingInterface {
 		return response.toString();
 	}
 
-	private static HttpURLConnection setupConnection(String url) throws IOException
-	{
+	private static HttpURLConnection setupConnection(String url) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
@@ -84,10 +78,8 @@ public class ApplicationProgrammingInterface {
 		return conn;
 	}
 
-	private static void allowMethods(String... methods)
-	{
-		try
-		{
+	private static void allowMethods(String... methods) {
+		try {
 			Field methodsField = HttpURLConnection.class.getDeclaredField("methods");
 			methodsField.setAccessible(true);
 
@@ -101,9 +93,7 @@ public class ApplicationProgrammingInterface {
 			String[] newMethods = methodsSet.toArray(new String[0]);
 
 			methodsField.set(null/* static field */, newMethods);
-		}
-		catch (NoSuchFieldException | IllegalAccessException e)
-		{
+		} catch (NoSuchFieldException | IllegalAccessException e) {
 			throw new IllegalStateException(e);
 		}
 	}

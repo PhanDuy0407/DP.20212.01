@@ -1,42 +1,4 @@
 /target/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> solid/merged
-
-/bin/
-
- 
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-<<<<<<< HEAD
-=======
-
-=======
-=======
->>>>>>> cleancode/merged
 
 /bin/
 
@@ -65,10 +27,6 @@ hs_err_pid*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
->>>>>>> solid/merged
-=======
->>>>>>> cleancode/merged
 
 .classpath
 .project
@@ -76,11 +34,3 @@ hs_err_pid*
 /.settings/
 .idea/
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> solid/subteam2
->>>>>>> solid/merged
-=======
-DesignPattern/DesignPattern.asta
->>>>>>> cleancode/merged

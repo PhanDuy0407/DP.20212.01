@@ -4,7 +4,10 @@ import java.sql.SQLException;
 
 import entity.cart.Cart;
 
-
+/**
+ * This class controls the flow of events when users view the Cart
+ * @author nguyenlm
+ */
 public class ViewCartController extends BaseController{
     
     /**
@@ -20,9 +23,6 @@ public class ViewCartController extends BaseController{
      * @return subtotal
      */
     public int getCartSubtotal(){
-        /**
-         * Clean code: data-refactoring move an expression inline
-         */
         return SessionInformation.cartInstance.calSubtotal();
     }
 

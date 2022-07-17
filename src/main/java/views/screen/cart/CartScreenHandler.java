@@ -58,7 +58,7 @@ public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	public CartScreenHandler(Stage stage, String screenPath) throws IOException {
 		super(stage, screenPath);
 		try {
-			configBaseFuncionality();
+			setupFunctionality();
 		} catch (IOException ex) {
 			LOGGER.info(ex.getMessage());
 			PopupScreen.error("Error when loading resources.");
@@ -72,6 +72,7 @@ public class CartScreenHandler extends BaseScreenHandler implements Observer {
 		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
 		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
 		//lai cac phuong thuc setup do
+
 		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");
 		Image im = new Image(file.toURI().toString());
