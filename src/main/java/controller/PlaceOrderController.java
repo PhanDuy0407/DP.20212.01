@@ -5,13 +5,12 @@ import entity.cart.Cart;
 import entity.cart.CartItem;
 import entity.invoice.Invoice;
 import entity.order.Order;
-import entity.order.OrderItem;
 import entity.shipping.DeliveryInfo;
 import entity.shipping.LastestDistanceCalculate;
 import entity.shipping.ShippingConfigs;
 import helper.Validate;
 
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
 
 import java.io.IOException;
 import java.sql.SQLException;
