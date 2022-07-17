@@ -69,11 +69,6 @@ public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	}
 
 	protected void setupFunctionality() throws Exception {
-		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
-		//tao 1 class setUp, ben trong co cac phuong thuc setupData, setupFunctionality, setMediaInfo va cho class nay override
-		//lai cac phuong thuc setup do
-
-		// fix relative image path caused by fxml
 		File file = new File(ViewsConfig.IMAGE_PATH + "/Logo.png");
 		Image im = new Image(file.toURI().toString());
 		aimsImage.setImage(im);
@@ -187,7 +182,11 @@ public class CartScreenHandler extends BaseScreenHandler implements Observer {
 	@Override
 	public void update(Observable observable) {
 		if (observable instanceof MediaHandler) {
-			// TODO Update Value, anything of Cart in here
+			MediaHandler mediaHandler = (MediaHandler) observable;
+			CartItem cartItem = mediaHandler.getCartItem();
+			SessionInformation.cartInstance.removeCartMedia(cartItem); // update user cart
+			updateCart(); // re-display user cart
+			LOGGER.info("Deleted " + cartItem.getMedia().getTitle() + " from the cart");
 		}
 	}
 }

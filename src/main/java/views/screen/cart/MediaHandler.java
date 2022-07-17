@@ -74,10 +74,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 		setMediaInfo();
 	}
 
-	private void setMediaInfo() {
-		//Strategy Pattern: Vi rat nhieu class override lai phuong thuc nay nen can phai
-		//tao 1 class setUp, ben trong co cac phuong thuc vd nhu setupData, setupFunctionality, setMediaInfo,... va cho class nay override
-		//lai cac phuong thuc setup do
+	private void setMediaInfo() {	
 		title.setText(cartItem.getMedia().getTitle());
 		price.setText(ViewsConfig.getCurrencyFormat(cartItem.getPrice()));
 		File file = new File(cartItem.getMedia().getImageURL());
@@ -91,9 +88,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 		btnDelete.setFont(ViewsConfig.REGULAR_FONT);
 		btnDelete.setOnMouseClicked(e -> {
 			try {
-				SessionInformation.cartInstance.removeCartMedia(cartItem); // update user cart
-				cartScreen.updateCart(); // re-display user cart
-				LOGGER.info("Deleted " + cartItem.getMedia().getTitle() + " from the cart");
+				notifyObservers();
 			} catch (SQLException exp) {
 				exp.printStackTrace();
 				throw new ViewCartException();
@@ -140,13 +135,11 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 
 	@Override
 	public void attach(Observer observer) {
-		// TODO Auto-generated method stub
 		listObserver.add(observer);
 	}
 
 	@Override
 	public void remove(Observer observer) {
-		// TODO Auto-generated method stub
 		if (listObserver.size() > 0) {
 			listObserver.remove(observer);
 		}
@@ -154,7 +147,6 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
 		listObserver.forEach(observer -> observer.update(this));
 	}
 }
