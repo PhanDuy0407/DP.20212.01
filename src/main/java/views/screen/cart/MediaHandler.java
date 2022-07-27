@@ -61,7 +61,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 
 	private CartItem cartItem;
 	private Spinner<Integer> spinner;
-	private CartScreenHandler cartScreen;
+	// private CartScreenHandler cartScreen;
 	private List<Observer> listObserver;
 	public MediaHandler(String screenPath, CartScreenHandler cartScreen) throws IOException {
 		super(screenPath);
@@ -121,7 +121,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
 				price.setText(ViewsConfig.getCurrencyFormat(numOfProd* cartItem.getPrice()));
 
 				// update subtotal and amount of Cart
-				cartScreen.updateCartAmount();
+				// cartScreen.updateCartAmount();
 
 			} catch (SQLException e1) {
 				throw new MediaUpdateException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));

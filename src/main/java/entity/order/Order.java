@@ -42,7 +42,21 @@ public class Order {
     }
 
     public void cancelOrder() {
+        
     	this.changeState(new CancelState());
+    }
+
+    public void approveOrder() {
+    	this.changeState(new ApproveState());
+    }
+
+    public void PlacementOrder() {
+    	this.changeState(new PlacementState());
+    }
+
+    public void ChangeStateError()
+    {
+
     }
 
     public Order(Cart cart) {
@@ -63,6 +77,7 @@ public class Order {
         this.orderMediaList = Collections.unmodifiableList(orderItems);
         this.subtotal = cart.calSubtotal();
         this.tax = (int) (ViewsConfig.PERCENT_VAT/100) * subtotal;
+        this.state = new OrderingState();
     }
 
     public List getListOrderMedia() {
